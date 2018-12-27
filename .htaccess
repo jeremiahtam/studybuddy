@@ -1,0 +1,59 @@
+RewriteEngine On
+
+#rewrite for home page 
+RewriteRule ^home(.*)$ index.php [QSA,L]
+
+#rewrite for login page
+RewriteRule ^login(.*)$ login.php [QSA,L]
+
+#rewrite for signup page
+RewriteRule ^signup(.*)$ signup.php [QSA,L]
+
+#rewrite for forgot-password page
+RewriteRule ^forgot-password(.*)$ forgot-password.php [QSA,L]
+
+#rewrite for reset-password page
+RewriteRule ^reset-password(.*)$ reset-password.php [QSA,L]
+
+#rewrite for create-ad page
+RewriteRule ^create-ad(.*)$ create-ad.php [QSA,L]
+
+#rewrite for alternative upload profile photo page
+RewriteRule ^change-profile-photo(.*)$ change-profile-photo.php [QSA,L]
+
+#rewrite for alternative upload cover photo page
+RewriteRule ^change-cover-photo(.*)$ change-cover-photo.php [QSA,L]
+
+#rewrite rule for settings
+RewriteRule ^messages/?$ messages.php [QSA,L]
+RewriteRule ^messages/([a-zA-Z]+)/?$ messages.php?msg_username=$1 [QSA,L]
+
+#rewrite rule for settings
+RewriteRule ^settings/?$ settings.php [QSA,L]
+RewriteRule ^settings/([a-zA-Z]+)/?$ settings.php?settings_page=$1 [QSA,L]
+
+#rewrite rule for profile
+RewriteRule ^profile/?$ profile.php [QSA,L]
+RewriteRule ^profile/([a-zA-Z0-9_-]+)/?$ profile.php?u=$1 [QSA,L]
+RewriteRule ^profile/([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/?$ profile.php?u=$1&profile_type=$2 [L,NC]
+RewriteRule ^profile/([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/([0-9]+)/?$ profile.php?u=$1&profile_type=$2&page=$3 [L,NC]
+
+#rewrite rule for view-ad
+RewriteRule ^ad/?$ view-ad.php [QSA,L]
+RewriteRule ^ad/([a-zA-Z0-9_-]+)/?$ view-ad.php?ad_id=$1 [QSA,L]
+
+#rewrite rule for view-ads-by-category
+RewriteRule ^view-ads-by-category/?$ view-ads-by-category.php [QSA,L]
+RewriteRule ^view-ads-by-category/([a-zA-Z0-9_-]+)/?$ view-ads-by-category.php?category=$1 [QSA,L]
+RewriteRule ^view-ads-by-category/([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/?$ view-ads-by-category.php?category=$1&study_area=$2 [L,NC]
+RewriteRule ^view-ads-by-category/([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/?$ view-ads-by-category.php?category=$1&study_area=$2&concentration=$3 [L,NC]
+
+RewriteRule ^view-ads-by-category/([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/([0-9]+)/?$ view-ads-by-category.php?category=$1&study_area=$2&concentration=$3&page=$4 [L,NC]
+
+
+# Redirect non-existing files or folders to index
+<IfModule mod_rewrite.c>  
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^ index.php/?$ [L]
+</IfModule>
