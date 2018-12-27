@@ -11,11 +11,11 @@ if (isset($login)){
 	  $email = $_POST["email"];
 	  $password = preg_replace('#[^A-Za-z0-9]#i',"",$_POST["password"]);//filter everything but letters and numbers
       $password_md5 = md5($password);
-      $sql= mysql_query("SELECT * FROM users WHERE email='$email' AND password='$password_md5' AND removed='no' LIMIT 1"); //query
+      $sql= mysqli_query($conn,"SELECT * FROM users WHERE email='$email' AND password='$password_md5' AND removed='no' LIMIT 1"); //query
       //Check for their existence
-      $userCount = mysql_num_rows($sql);//count the number of rows returned
+      $userCount = mysqli_num_rows($sql);//count the number of rows returned
       if ($userCount===1){
-	      $row = mysql_fetch_assoc($sql);
+	      $row = mysqli_fetch_assoc($sql);
 		  $login_user = $row["username"];
 		  //echo $user;
 		  $_SESSION["login_user"]= $login_user;

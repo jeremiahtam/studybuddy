@@ -19,12 +19,12 @@ $time=date('H:i:s');
 
 	/////////////////////////////////////////	
 	$page_query = "SELECT * FROM interested_list WHERE ad_id='$get_ad_id' ORDER BY id DESC";
-	$page_query_result = mysql_query($page_query);
+	$page_query_result = mysqli_query($conn,$page_query);
 	
-	$page_query_result_rows = mysql_num_rows($page_query_result);
+	$page_query_result_rows = mysqli_num_rows($page_query_result);
 	
-	$page_result = mysql_query($page_query);
-	$total_records = mysql_num_rows($page_result);
+	$page_result = mysqli_query($conn,$page_query);
+	$total_records = mysqli_num_rows($page_result);
 	$total_pages = ceil($total_records/$record_per_page);
 
 	if($window_width<992){
@@ -48,11 +48,11 @@ $time=date('H:i:s');
 	//////////////////Query to show the content of the messages between two users
 	$query = "SELECT * FROM interested_list WHERE ad_id='$get_ad_id' ORDER BY id DESC LIMIT ".$limit;
 	
-	$result = mysql_query($query);
+	$result = mysqli_query($conn,$query);
 	
-	$num_rows = mysql_num_rows($result);
+	$num_rows = mysqli_num_rows($result);
 
-while($get_interest = mysql_fetch_array($result)){
+while($get_interest = mysqli_fetch_array($result)){
 	$ad_id = $get_interest['ad_id'];
 	$interested_user = $get_interest['interested_user'];
 	
@@ -61,8 +61,8 @@ while($get_interest = mysql_fetch_array($result)){
 	$db_time = $get_interest ['time'];
 	$db_time = date('g:i a',strtotime($db_time));	
 
-	$get_interested_user = mysql_query("SELECT * FROM users WHERE username='$interested_user'");
-	$get_interested_user_details = mysql_fetch_assoc($get_interested_user);
+	$get_interested_user = mysqli_query($conn,"SELECT * FROM users WHERE username='$interested_user'");
+	$get_interested_user_details = mysqli_fetch_assoc($get_interested_user);
 	
 	$interested_fullname = $get_interested_user_details['fullname'];
 	$interested_profile_pic = $get_interested_user_details['profile_pic'];
@@ -89,8 +89,8 @@ while($get_interest = mysql_fetch_array($result)){
 	/////////////////////////////////////////	
 	$page_query = "SELECT * FROM interested_list WHERE ad_id='$get_ad_id' ORDER BY id DESC ";
 	
-	$page_result = mysql_query($page_query);
-	$total_records = mysql_num_rows($page_result);
+	$page_result = mysqli_query($conn,$page_query);
+	$total_records = mysqli_num_rows($page_result);
 	$total_pages = ceil($total_records/$record_per_page);
 
 	if($total_pages > 1){

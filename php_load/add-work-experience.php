@@ -17,14 +17,14 @@ if(isset($_POST['work_end_date'])){
 $date= date('Y-m-d');
 $time= date('H:i:s');
 
-	$insert_sql = mysql_query("INSERT INTO work_experience VALUES ('','$user','$form_organization_name','$form_position_held','$form_work_start_date','$form_work_end_date','$form_currently_there','$date','$time')");
+	$insert_sql = mysqli_query($conn,"INSERT INTO work_experience VALUES ('','$user','$form_organization_name','$form_position_held','$form_work_start_date','$form_work_end_date','$form_currently_there','$date','$time')");
 	
 	
 	
-	$sql= mysql_query("SELECT * FROM  work_experience WHERE username='$user'");
-	$num_rows = mysql_num_rows($sql);
+	$sql= mysqli_query($conn,"SELECT * FROM  work_experience WHERE username='$user'");
+	$num_rows = mysqli_num_rows($sql);
 	
-	while($row = mysql_fetch_assoc($sql)){
+	while($row = mysqli_fetch_assoc($sql)){
 		  
 	  $work_id = $row['id'];
 	  $username = $row['username'];

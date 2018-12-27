@@ -15,7 +15,7 @@ switch($settings_type){
 		$bio = htmlentities($_POST['bio']);
 		$date_of_birth = htmlentities($_POST['date_of_birth']);
 		
-		$sql= mysql_query("UPDATE users SET fullname='$fullname',location='$location',phone='$phone_number',gender'$gender',bio='$bio',date_of_birth='$date_of_birth' WHERE username='$user' AND removed='no'");
+		$sql= mysqli_query($conn,"UPDATE users SET fullname='$fullname',location='$location',phone='$phone_number',gender'$gender',bio='$bio',date_of_birth='$date_of_birth' WHERE username='$user' AND removed='no'");
 
 		echo"<p class='alert-success'>Your personal details have been updated successfully!</p>";
 
@@ -27,13 +27,13 @@ switch($settings_type){
 		 $repeat_new_password=$_POST['repeat_new_password'];
 		 $md5_old_password = md5($old_password);
 		 //check if old passwordd matches the one in database
-		 $sql= mysql_query("SELECT password FROM users WHERE username='$user' AND removed='no'");
-		 $row = mysql_fetch_assoc($sql);
+		 $sql= mysqli_query($conn,"SELECT password FROM users WHERE username='$user' AND removed='no'");
+		 $row = mysqli_fetch_assoc($sql);
 		 //database password
 		 $db_password = $row['password'];
 		 if($md5_old_password==$db_password){
 		  	$new_password=md5($new_password);
-		    $sql2= mysql_query("UPDATE users SET password='$new_password' WHERE username='$user' AND removed='no'");
+		    $sql2= mysqli_query($conn,"UPDATE users SET password='$new_password' WHERE username='$user' AND removed='no'");
 			 echo "<p class='alert-success'>Your password has been changed successfully!</p>";
 			 }else{
 			 echo "<p class='alert-danger'>Your old password is incorrect!</p>";
@@ -50,8 +50,8 @@ switch($settings_type){
 
 		$chars= "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 		$billing_code= substr(str_shuffle($chars), 0, 6);
- 		$sql= mysql_query("SELECT email FROM users WHERE username='$user' AND removed='no'");
- 		$row = mysql_fetch_assoc($sql);
+ 		$sql= mysqli_query($conn,"SELECT email FROM users WHERE username='$user' AND removed='no'");
+ 		$row = mysqli_fetch_assoc($sql);
 		//database email
 		$db_email = $row['email'];
 		 
@@ -64,7 +64,7 @@ switch($settings_type){
 		Confirmation Code:  $billing_code
 		";
 		 
-		mysql_query("UPDATE billing_settings SET bank_name='$bank_name',account_owner='$account_owner',account_number='$account_number',billing_code='$billing_code',date='$date',time='$time' WHERE username='$user'");
+		mysqli_query($conn,"UPDATE billing_settings SET bank_name='$bank_name',account_owner='$account_owner',account_number='$account_number',billing_code='$billing_code',date='$date',time='$time' WHERE username='$user'");
 		//send email for confirmation code 
 		mail($to,$subject,$body);
 
@@ -77,12 +77,12 @@ switch($settings_type){
 		$time= date('H:i:s');
 		
 
- 		$sql= mysql_query("SELECT billing_code FROM billing_settings WHERE username='$user'");
- 		$row = mysql_fetch_assoc($sql);
+ 		$sql= mysqli_query($conn,"SELECT billing_code FROM billing_settings WHERE username='$user'");
+ 		$row = mysqli_fetch_assoc($sql);
 		//database email
 		$db_billing_code = $row['billing_code'];
 		if($db_billing_code==$billing_code){
-			mysql_query("UPDATE billing_settings SET billing_code='',date='$date',time='$time' WHERE username='$user'");
+			mysqli_query($conn,"UPDATE billing_settings SET billing_code='',date='$date',time='$time' WHERE username='$user'");
 			 echo "<p class='alert-success'>Your billing details have been successfully updated!</p>";
 		  }else{
 			 echo "<p class='alert-danger'>Please enter the correct confirmation code!</p>";
@@ -115,7 +115,7 @@ switch($settings_type){
 			}else{
 			$replies='no';	
 				}
-			mysql_query("UPDATE notification_settings SET requests='$requests',comments='$comments',messages='$messages',replies='$replies',time='$time',date='$date' WHERE username='$user'");
+			mysqli_query($conn,"UPDATE notification_settings SET requests='$requests',comments='$comments',messages='$messages',replies='$replies',time='$time',date='$date' WHERE username='$user'");
 			 echo "<p class='alert-success'>Your notification settings has been successfully updated!</p>";
 	break;
 	
@@ -144,7 +144,7 @@ switch($settings_type){
 			}else{
 			$location='private';	
 				}
-			mysql_query("UPDATE privacy_settings SET phone='$phone',email='$email',age='$age',location='$location',time='$time',date='$date' WHERE username='$user'");
+			mysqli_query($conn,"UPDATE privacy_settings SET phone='$phone',email='$email',age='$age',location='$location',time='$time',date='$date' WHERE username='$user'");
 			 echo "<p class='alert-success'>Your privacy settings has been successfully updated!</p>";
 	
 	break;

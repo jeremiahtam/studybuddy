@@ -12,7 +12,7 @@
   }
 
   if (isset($_GET['settings_page'])){
-	  $settings_page = mysql_real_escape_string($_GET['settings_page']);
+	  $settings_page = mysqli_real_escape_string($_GET['settings_page']);
     }else{
 		$settings_page ="";
 		}

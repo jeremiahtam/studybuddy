@@ -9,10 +9,10 @@ $ad_id = htmlentities($_POST['ad_id']);
 $date = date('Y-m-d');
 $time = date('H:i:s');
 
-$ad_sql= mysql_query("SELECT * FROM ads WHERE id='$ad_id' AND removed='no'");
-$ad_num_rows = mysql_num_rows($ad_sql);
+$ad_sql= mysqli_query($conn,"SELECT * FROM ads WHERE id='$ad_id' AND removed='no'");
+$ad_num_rows = mysqli_num_rows($ad_sql);
 if($ad_num_rows==1){
-	$ad_row = mysql_fetch_assoc($ad_sql);
+	$ad_row = mysqli_fetch_assoc($ad_sql);
   
 	$category = $ad_row['category'];
 	$study_area = $ad_row['study_area'];
@@ -24,10 +24,10 @@ if($ad_num_rows==1){
 	$exam_date = $ad_row['exam_date'];
 	$research_due_date = $ad_row['research_due_date'];
 
-	$similar_ad_sql= mysql_query("SELECT * FROM ads WHERE category='$category' AND id!='$ad_id' AND removed='no' LIMIT 7");
-	$similar_ad_num_rows = mysql_num_rows($similar_ad_sql);
+	$similar_ad_sql= mysqli_query($conn,"SELECT * FROM ads WHERE category='$category' AND id!='$ad_id' AND removed='no' LIMIT 7");
+	$similar_ad_num_rows = mysqli_num_rows($similar_ad_sql);
 	if($similar_ad_num_rows>0){
-		while($similar_ad_row = mysql_fetch_assoc($similar_ad_sql)){
+		while($similar_ad_row = mysqli_fetch_assoc($similar_ad_sql)){
 			$similar_ad_id = $similar_ad_row['id'];
 			$similar_ad_username = $similar_ad_row['username'];
 			
@@ -49,8 +49,8 @@ if($ad_num_rows==1){
 			$similar_date = $similar_ad_row['date'];
 			$similar_time = $similar_ad_row['time'];
 			
-			$user_sql = mysql_query("SELECT * FROM users WHERE username='$similar_ad_username' AND removed='no'");
-			$user_sql_row = mysql_fetch_assoc($user_sql);
+			$user_sql = mysqli_query($conn,"SELECT * FROM users WHERE username='$similar_ad_username' AND removed='no'");
+			$user_sql_row = mysqli_fetch_assoc($user_sql);
 			$fullname = $user_sql_row['fullname'];
 			$location = $user_sql_row['location'];
 			$profile_pic = $user_sql_row['profile_pic'];

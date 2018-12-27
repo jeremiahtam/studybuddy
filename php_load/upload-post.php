@@ -40,11 +40,11 @@ switch($post_type){
 		  if($exam_date < $date && $research_due_date < $date){
 			echo"<p class='text-danger'><span class='ion-alert'></span> Your date due date must not be later than today!</p> ";
 			}else{				
-			  $sql = mysql_query("INSERT INTO ads VALUES ('','$user','Study Buddy','$category','$study_area','$concentration','$topic','$knowledge_level','$purpose','$exam_target','$exam_date','$research_due_date','$more_info','$date','$time','no')");
+			  $sql = mysqli_query($conn,"INSERT INTO ads VALUES ('','$user','Study Buddy','$category','$study_area','$concentration','$topic','$knowledge_level','$purpose','$exam_target','$exam_date','$research_due_date','$more_info','$date','$time','no')");
 			  echo"<p class='text-success'><span class='ion-android-checkmark-circle'></span> Your Ad has been published successfully!</p> ";
 			}
 		}else{
-		  $sql = mysql_query("INSERT INTO ads VALUES ('','$user','Study Buddy','$category','$study_area','$concentration','$topic','$knowledge_level','$purpose','$exam_target','$exam_date','$research_due_date','$more_info','$date','$time','no')");
+		  $sql = mysqli_query($conn,"INSERT INTO ads VALUES ('','$user','Study Buddy','$category','$study_area','$concentration','$topic','$knowledge_level','$purpose','$exam_target','$exam_date','$research_due_date','$more_info','$date','$time','no')");
 		  echo"<p class='text-success'><span class='ion-android-checkmark-circle'></span> Your Ad has been published successfully!</p> ";
 		}
 	

@@ -2,8 +2,8 @@
 include('../inc/db.inc.php');
 $user = $_POST['user'];
 
-$sql= mysql_query("SELECT * FROM users WHERE username='$user' AND removed='no'");
-$row = mysql_fetch_assoc($sql);
+$sql= mysqli_query($conn,"SELECT * FROM users WHERE username='$user' AND removed='no'");
+$row = mysqli_fetch_assoc($sql);
 
 $id = $row['id'];
 $fullname = $row['fullname'];

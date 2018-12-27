@@ -6,8 +6,8 @@ $settings_page = $_POST['settings_page'];
 switch($settings_page){
 	
 	case 'personal':
-		$sql= mysql_query("SELECT * FROM users WHERE username='$user' AND removed='no'");
-		$row = mysql_fetch_assoc($sql);
+		$sql= mysqli_query($conn,"SELECT * FROM users WHERE username='$user' AND removed='no'");
+		$row = mysqli_fetch_assoc($sql);
 
 		$id = $row['id'];
 		$fullname = $row['fullname'];
@@ -86,8 +86,8 @@ switch($settings_page){
 		break;
 
 	case 'privacy':
-		$sql= mysql_query("SELECT * FROM privacy_settings WHERE username='$user'");
-		$row = mysql_fetch_assoc($sql);
+		$sql= mysqli_query($conn,"SELECT * FROM privacy_settings WHERE username='$user'");
+		$row = mysqli_fetch_assoc($sql);
 
 		$id = $row['id'];
 		$phone = $row['phone'];
@@ -176,8 +176,8 @@ switch($settings_page){
 
 	case 'billing':
 	
-		$sql= mysql_query("SELECT * FROM billing_settings WHERE username='$user'");
-		$row = mysql_fetch_assoc($sql);
+		$sql= mysqli_query($conn,"SELECT * FROM billing_settings WHERE username='$user'");
+		$row = mysqli_fetch_assoc($sql);
 
 		$id = $row['id'];
 		$username = $row['username'];
@@ -243,8 +243,8 @@ switch($settings_page){
 		break;
 
 	case 'notifications':
-		$sql= mysql_query("SELECT * FROM notification_settings WHERE username='$user'");
-		$row = mysql_fetch_assoc($sql);
+		$sql= mysqli_query($conn,"SELECT * FROM notification_settings WHERE username='$user'");
+		$row = mysqli_fetch_assoc($sql);
 
 		$id = $row['id'];
 		$comments = $row['comments'];
@@ -414,10 +414,10 @@ switch($settings_page){
 				  <th class='hidden-sm'>End Date</th>
 				  <th>Action</th>
 				</tr>";
-			  $sql= mysql_query("SELECT * FROM educational_qualifications WHERE username='$user'");
-			  $edu_num_rows = mysql_num_rows($sql);
+			  $sql= mysqli_query($conn,"SELECT * FROM educational_qualifications WHERE username='$user'");
+			  $edu_num_rows = mysqli_num_rows($sql);
 			  if($edu_num_rows>0){  
-				while($row = mysql_fetch_assoc($sql)){
+				while($row = mysqli_fetch_assoc($sql)){
 				$id = $row['id'];
 				$username = $row['username'];
 				$institution = $row['institution'];
@@ -490,8 +490,8 @@ switch($settings_page){
 		break;
 	
 	default:
-		$sql= mysql_query("SELECT * FROM users WHERE username='$user' AND removed='no'");
-		$row = mysql_fetch_assoc($sql);
+		$sql= mysqli_query($conn,"SELECT * FROM users WHERE username='$user' AND removed='no'");
+		$row = mysqli_fetch_assoc($sql);
 
 		$id = $row['id'];
 		$fullname = $row['fullname'];

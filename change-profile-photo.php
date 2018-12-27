@@ -59,7 +59,7 @@ if(!isset($_SESSION["login_user"])){
 			<?php
 			//deleting the profile picture in database
 			if(isset($_POST['delete_profile_pic'])){
-				$profile_pic_query= mysql_query("UPDATE users SET profile_pic='' WHERE username='$user'");
+				$profile_pic_query= mysqli_query($conn,"UPDATE users SET profile_pic='' WHERE username='$user'");
 				}
 				
 				
@@ -74,7 +74,7 @@ if(!isset($_SESSION["login_user"])){
 										
 						move_uploaded_file(@$_FILES["profile_pic"]["tmp_name"],"img/profile_pic/".$_FILES["profile_pic"]["name"]);
 						$profile_pic_name=@$_FILES["profile_pic"]["name"];
-						$profile_pic_query= mysql_query("UPDATE users SET profile_pic='$profile_pic_name' WHERE username='$user'");
+						$profile_pic_query= mysqli_query($conn,"UPDATE users SET profile_pic='$profile_pic_name' WHERE username='$user'");
 						echo "<a class='text-success'>Successfully Updated </a>";
 						}else{
 						echo"<a class='text-danger'>Invalid file! Your image must be in .jpg, .png or .gif format</a>";
@@ -87,8 +87,8 @@ if(!isset($_SESSION["login_user"])){
 					}
 			}	
 			//check whether the users has uploaded their pic
-			$check_pic= mysql_query("SELECT profile_pic FROM users WHERE username='$user'");
-			$get_pic_row= mysql_fetch_assoc($check_pic);
+			$check_pic= mysqli_query($conn,"SELECT profile_pic FROM users WHERE username='$user'");
+			$get_pic_row= mysqli_fetch_assoc($check_pic);
 			$profile_pic_db= $get_pic_row['profile_pic'];
  
 			//making a default profile pic	

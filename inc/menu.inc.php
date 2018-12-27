@@ -6,8 +6,8 @@ $title=basename($_SERVER['SCRIPT_FILENAME'],'.php');
 
 //Get details of the user 
   if(isset($user)){
-	$user_sql=mysql_query("SELECT * FROM users WHERE username='$user' AND removed='no'");
-	$user_row = mysql_fetch_assoc($user_sql);
+	$user_sql=mysqli_query($conn,"SELECT * FROM users WHERE username='$user' AND removed='no'");
+	$user_row = mysqli_fetch_assoc($user_sql);
 	$user_fullname = $user_row['fullname'];
 	$small_profile_pic = $user_row['profile_pic'];
 	}   

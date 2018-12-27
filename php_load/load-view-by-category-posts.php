@@ -69,8 +69,8 @@ switch($url_level){
 	while($x < count($category_array)){
 	  //Check if there are posts in the selected category in the array index 
 	  //If none, then move to the next index
-	  $category_query = mysql_query("SELECT * FROM ads WHERE category='".$category_array[$x]."' AND removed='no' ORDER BY id DESC LIMIT 4");
-	  $num_rows_category_query = mysql_num_rows($category_query);
+	  $category_query = mysqli_query($conn,"SELECT * FROM ads WHERE category='".$category_array[$x]."' AND removed='no' ORDER BY id DESC LIMIT 4");
+	  $num_rows_category_query = mysqli_num_rows($category_query);
 	  if($num_rows_category_query>0){
 		  echo"
 		  <div class='row'>
@@ -79,7 +79,7 @@ switch($url_level){
 			<a class='".$category_array[$x]."' id='$url_level".'_level'."'>See More <span class='ion-ios-arrow-thin-right'></span></a>
 			</div>
 			";
-		  while($get_ads = mysql_fetch_assoc($category_query)){
+		  while($get_ads = mysqli_fetch_assoc($category_query)){
 			$db_id = $get_ads['id'];
 			$db_username = $get_ads['username'];
 			$db_in_search_of = $get_ads['in_search_of'];
@@ -96,8 +96,8 @@ switch($url_level){
 			$db_date = $get_ads['date'];
 			$db_time = $get_ads['time'];
 			
-			$ads_user_query = mysql_query("SELECT * FROM users WHERE username='$db_username'");
-			$get_ads_user = mysql_fetch_assoc($ads_user_query);
+			$ads_user_query = mysqli_query($conn,"SELECT * FROM users WHERE username='$db_username'");
+			$get_ads_user = mysqli_fetch_assoc($ads_user_query);
 			
 			$ads_user_fullname = $get_ads_user['fullname'];
 			if(strlen($ads_user_fullname)>20){
@@ -164,8 +164,8 @@ switch($url_level){
 					<div class='interest-count'>
 					  <a class='count_id_$db_id modal-action' data-display-id='$db_id' data-display-type='display-ad-interest' id='display-ad-interest' data-toggle='modal' data-target='#modal'>";
 					  //count how many people are interested in this ad post
-					  $count_sql = mysql_query("SELECT * FROM interested_list WHERE ad_id='$db_id'");
-					  $count_sql_rows = mysql_num_rows($count_sql);
+					  $count_sql = mysqli_query($conn,"SELECT * FROM interested_list WHERE ad_id='$db_id'");
+					  $count_sql_rows = mysqli_num_rows($count_sql);
 					  //only display the number of interests if its greater than zero
 					  if($count_sql_rows){
 					  echo "<span class='ion-coffee'></span> <span class='number-count'>$count_sql_rows</span>";
@@ -185,8 +185,8 @@ switch($url_level){
 				  
 				  <a class='";
 				  //check database if this user is already interested in this ad
-				  $check_sql = mysql_query("SELECT * FROM interested_list WHERE ad_id='$db_id' and interested_user='$user'");
-				  $check_rows = mysql_num_rows($check_sql);
+				  $check_sql = mysqli_query($conn,"SELECT * FROM interested_list WHERE ad_id='$db_id' and interested_user='$user'");
+				  $check_rows = mysqli_num_rows($check_sql);
 				  //if the user is not yet interested, display add-interest-btn
 				  if($check_rows==0){
 					echo"add-interest-btn";
@@ -226,8 +226,8 @@ switch($url_level){
 		
 	  //Check if there are posts in the selected category in the array index 
 	  //If none, then move to the next index
-	  $category_query = mysql_query("SELECT * FROM ads WHERE category='$category' AND study_area='".$active_category[$x][0]."' AND removed='no' ORDER BY id DESC LIMIT 4");
-	  $num_rows_category_query = mysql_num_rows($category_query);
+	  $category_query = mysqli_query($conn,"SELECT * FROM ads WHERE category='$category' AND study_area='".$active_category[$x][0]."' AND removed='no' ORDER BY id DESC LIMIT 4");
+	  $num_rows_category_query = mysqli_num_rows($category_query);
 	  if($num_rows_category_query>0){
 		  echo"
 		  <div class='row'>
@@ -236,7 +236,7 @@ switch($url_level){
 			<a class=".$active_category[$x][0]." id='$url_level".'_level'."'>See More <span class='ion-ios-arrow-thin-right'></span></a>
 			</div>
 			";
-		  while($get_ads = mysql_fetch_assoc($category_query)){
+		  while($get_ads = mysqli_fetch_assoc($category_query)){
 			$db_id = $get_ads['id'];
 			$db_username = $get_ads['username'];
 			$db_in_search_of = $get_ads['in_search_of'];
@@ -253,8 +253,8 @@ switch($url_level){
 			$db_date = $get_ads['date'];
 			$db_time = $get_ads['time'];
 			
-			$ads_user_query = mysql_query("SELECT * FROM users WHERE username='$db_username'");
-			$get_ads_user = mysql_fetch_assoc($ads_user_query);
+			$ads_user_query = mysqli_query($conn,"SELECT * FROM users WHERE username='$db_username'");
+			$get_ads_user = mysqli_fetch_assoc($ads_user_query);
 			
 			$ads_user_fullname = $get_ads_user['fullname'];
 			if(strlen($ads_user_fullname)>20){
@@ -321,8 +321,8 @@ switch($url_level){
 					<div class='interest-count'>
 					  <a class='count_id_$db_id modal-action' data-display-id='$db_id' data-display-type='display-ad-interest' id='display-ad-interest' data-toggle='modal' data-target='#modal'>";
 					  //count how many people are interested in this ad post
-					  $count_sql = mysql_query("SELECT * FROM interested_list WHERE ad_id='$db_id'");
-					  $count_sql_rows = mysql_num_rows($count_sql);
+					  $count_sql = mysqli_query($conn,"SELECT * FROM interested_list WHERE ad_id='$db_id'");
+					  $count_sql_rows = mysqli_num_rows($count_sql);
 					  //only display the number of interests if its greater than zero
 					  if($count_sql_rows){
 					  echo "<span class='ion-coffee'></span> <span class='number-count'>$count_sql_rows</span>";
@@ -342,8 +342,8 @@ switch($url_level){
 				  
 				  <a class='";
 				  //check database if this user is already interested in this ad
-				  $check_sql = mysql_query("SELECT * FROM interested_list WHERE ad_id='$db_id' and interested_user='$user'");
-				  $check_rows = mysql_num_rows($check_sql);
+				  $check_sql = mysqli_query($conn,"SELECT * FROM interested_list WHERE ad_id='$db_id' and interested_user='$user'");
+				  $check_rows = mysqli_num_rows($check_sql);
 				  //if the user is not yet interested, display add-interest-btn
 				  if($check_rows==0){
 					echo"add-interest-btn";
@@ -390,8 +390,8 @@ switch($url_level){
 		  //get all the content(concentrations) of that array starting from index [1]
 		  $y = 1;
 		  while($y < count($active_category[$x])){
-			$category_query = mysql_query("SELECT * FROM ads WHERE category='".$category."' AND concentration='".$active_category[$x][$y]."' AND removed='no' ORDER BY id DESC LIMIT 4");
-			$num_rows_category_query = mysql_num_rows($category_query);
+			$category_query = mysqli_query($conn,"SELECT * FROM ads WHERE category='".$category."' AND concentration='".$active_category[$x][$y]."' AND removed='no' ORDER BY id DESC LIMIT 4");
+			$num_rows_category_query = mysqli_num_rows($category_query);
 			if($num_rows_category_query>0){
 				echo"
 				<div class='row'>
@@ -399,7 +399,7 @@ switch($url_level){
 				  <a class='".$active_category[$x][$y]."' id='$url_level".'_level'."' data-study-area='".$active_category[$x][0]."'>See More <span class='ion-ios-arrow-thin-right'></span></a>
 				  </div>
 				  ";
-				while($get_ads = mysql_fetch_assoc($category_query)){
+				while($get_ads = mysqli_fetch_assoc($category_query)){
 				  $db_id = $get_ads['id'];
 				  $db_username = $get_ads['username'];
 				  $db_in_search_of = $get_ads['in_search_of'];
@@ -416,8 +416,8 @@ switch($url_level){
 				  $db_date = $get_ads['date'];
 				  $db_time = $get_ads['time'];
 				  
-				  $ads_user_query = mysql_query("SELECT * FROM users WHERE username='$db_username'");
-				  $get_ads_user = mysql_fetch_assoc($ads_user_query);
+				  $ads_user_query = mysqli_query($conn,"SELECT * FROM users WHERE username='$db_username'");
+				  $get_ads_user = mysqli_fetch_assoc($ads_user_query);
 				  
 				  $ads_user_fullname = $get_ads_user['fullname'];
 				  if(strlen($ads_user_fullname)>20){
@@ -484,8 +484,8 @@ switch($url_level){
 						  <div class='interest-count'>
 							<a class='count_id_$db_id modal-action' data-display-id='$db_id' data-display-type='display-ad-interest' id='display-ad-interest' data-toggle='modal' data-target='#modal'>";
 							//count how many people are interested in this ad post
-							$count_sql = mysql_query("SELECT * FROM interested_list WHERE ad_id='$db_id'");
-							$count_sql_rows = mysql_num_rows($count_sql);
+							$count_sql = mysqli_query($conn,"SELECT * FROM interested_list WHERE ad_id='$db_id'");
+							$count_sql_rows = mysqli_num_rows($count_sql);
 							//only display the number of interests if its greater than zero
 							if($count_sql_rows){
 							echo "<span class='ion-coffee'></span> <span class='number-count'>$count_sql_rows</span>";
@@ -505,8 +505,8 @@ switch($url_level){
 						
 						<a class='";
 						//check database if this user is already interested in this ad
-						$check_sql = mysql_query("SELECT * FROM interested_list WHERE ad_id='$db_id' and interested_user='$user'");
-						$check_rows = mysql_num_rows($check_sql);
+						$check_sql = mysqli_query($conn,"SELECT * FROM interested_list WHERE ad_id='$db_id' and interested_user='$user'");
+						$check_rows = mysqli_num_rows($check_sql);
 						//if the user is not yet interested, display add-interest-btn
 						if($check_rows==0){
 						  echo"add-interest-btn";
@@ -546,12 +546,12 @@ switch($url_level){
 
 	case 'concentration':
 	
-	$category_query = mysql_query("SELECT * FROM ads WHERE category='$category' AND study_area='$study_area' AND concentration='$concentration' AND removed='no' ORDER BY id DESC LIMIT 4");
-	$num_rows_category_query = mysql_num_rows($category_query);
+	$category_query = mysqli_query($conn,"SELECT * FROM ads WHERE category='$category' AND study_area='$study_area' AND concentration='$concentration' AND removed='no' ORDER BY id DESC LIMIT 4");
+	$num_rows_category_query = mysqli_num_rows($category_query);
 	echo"<div class='row'>";
 	
 	if($num_rows_category_query>0){
-		while($get_ads = mysql_fetch_assoc($category_query)){
+		while($get_ads = mysqli_fetch_assoc($category_query)){
 		  $db_id = $get_ads['id'];
 		  $db_username = $get_ads['username'];
 		  $db_in_search_of = $get_ads['in_search_of'];
@@ -568,8 +568,8 @@ switch($url_level){
 		  $db_date = $get_ads['date'];
 		  $db_time = $get_ads['time'];
 		  
-		  $ads_user_query = mysql_query("SELECT * FROM users WHERE username='$db_username'");
-		  $get_ads_user = mysql_fetch_assoc($ads_user_query);
+		  $ads_user_query = mysqli_query($conn,"SELECT * FROM users WHERE username='$db_username'");
+		  $get_ads_user = mysqli_fetch_assoc($ads_user_query);
 		  
 		  $ads_user_fullname = $get_ads_user['fullname'];
 		  if(strlen($ads_user_fullname)>20){
@@ -637,8 +637,8 @@ switch($url_level){
 				  <div class='interest-count'>
 					<a class='count_id_$db_id modal-action' data-display-id='$db_id' data-display-type='display-ad-interest' id='display-ad-interest' data-toggle='modal' data-target='#modal'>";
 					//count how many people are interested in this ad post
-					$count_sql = mysql_query("SELECT * FROM interested_list WHERE ad_id='$db_id'");
-					$count_sql_rows = mysql_num_rows($count_sql);
+					$count_sql = mysqli_query($conn,"SELECT * FROM interested_list WHERE ad_id='$db_id'");
+					$count_sql_rows = mysqli_num_rows($count_sql);
 					//only display the number of interests if its greater than zero
 					if($count_sql_rows){
 					echo "<span class='ion-coffee'></span> <span class='number-count'>$count_sql_rows</span>";
@@ -658,8 +658,8 @@ switch($url_level){
 				
 				<a class='";
 				//check database if this user is already interested in this ad
-				$check_sql = mysql_query("SELECT * FROM interested_list WHERE ad_id='$db_id' and interested_user='$user'");
-				$check_rows = mysql_num_rows($check_sql);
+				$check_sql = mysqli_query($conn,"SELECT * FROM interested_list WHERE ad_id='$db_id' and interested_user='$user'");
+				$check_rows = mysqli_num_rows($check_sql);
 				//if the user is not yet interested, display add-interest-btn
 				if($check_rows==0){
 				  echo"add-interest-btn";

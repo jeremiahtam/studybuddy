@@ -16,10 +16,10 @@ include("../inc/db.inc.php");
 		
 		
 		if(isset($user)){
-			mysql_query("UPDATE users SET cover_photo='$imageName' WHERE username='$user' AND removed='no'");
+			mysqli_query($conn,"UPDATE users SET cover_photo='$imageName' WHERE username='$user' AND removed='no'");
 		
-			$sql = mysql_query("SELECT cover_photo FROM users WHERE username='$user' AND removed='no'");
-			$row = mysql_fetch_assoc($sql);
+			$sql = mysqli_query($conn,"SELECT cover_photo FROM users WHERE username='$user' AND removed='no'");
+			$row = mysqli_fetch_assoc($sql);
 			$cover_photo = $row['cover_photo'];
 			$cover_photo = $cover_photo;
 			echo "img/cover_photo/$cover_photo";

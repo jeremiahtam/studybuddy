@@ -21,9 +21,9 @@
 	  (user_from='$user' OR user_to='$user') AND status='connected'
 	  ORDER BY id DESC LIMIT $start_from,$record_per_page";
 	  
-	  $result = mysql_query($query);
+	  $result = mysqli_query($conn,$query);
 
-  while($get_connections = mysql_fetch_array($result)){
+  while($get_connections = mysqli_fetch_array($result)){
 	  $id = $get_connections['id'];
 	  $user_from = $get_connections['user_from'];
 	  $user_to = $get_connections['user_to'];
@@ -35,8 +35,8 @@
 		  $connection_name = $user_from;
 		  }
 		  
-	  $connection_query = mysql_query("SELECT * FROM users WHERE username='$connection_name'");
-	  $connection_details = mysql_fetch_assoc($connection_query);
+	  $connection_query = mysqli_query($conn,"SELECT * FROM users WHERE username='$connection_name'");
+	  $connection_details = mysqli_fetch_assoc($connection_query);
 	  
 	  $connection_fullname = $connection_details['fullname'];
 	  $connection_profile_pic = $connection_details['profile_pic'];
@@ -66,8 +66,8 @@
 	  $page_query = "SELECT * FROM connection_requests WHERE 
 	  (user_from='$user' OR user_to='$user') AND status='connected'
 	  ORDER BY id DESC";
-	  $page_result = mysql_query($page_query);
-	  $total_records = mysql_num_rows($page_result);
+	  $page_result = mysqli_query($conn,$page_query);
+	  $total_records = mysqli_num_rows($page_result);
 	  $total_pages = ceil($total_records/$record_per_page);
 	  
 	if($total_pages>1){

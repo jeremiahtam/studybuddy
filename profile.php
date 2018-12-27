@@ -10,12 +10,12 @@ if(!isset($_SESSION["login_user"])){
   include("/inc/db.inc.php");
   
   if (isset($_GET['u'])){
-  $username = mysql_real_escape_string($_GET['u']);
+  $username = mysqli_real_escape_string($_GET['u']);
   if (!empty($username)){
   //check user exists
-  $check = mysql_query("SELECT * FROM users WHERE username='$username' AND removed='no'");
-  if (mysql_num_rows($check)===1){
-        $get = mysql_fetch_assoc($check);
+  $check = mysqli_query($conn,"SELECT * FROM users WHERE username='$username' AND removed='no'");
+  if (mysqli_num_rows($check)===1){
+        $get = mysqli_fetch_assoc($check);
         $username = $get['username'];
         $profile_pic = $get['profile_pic'];
         
@@ -95,10 +95,10 @@ if(!isset($_SESSION["login_user"])){
             <div class='profile-box'>  
           <?php
             #get user information from database
-            $sql = mysql_query("SELECT * FROM users WHERE username='$username' AND removed='no'");
-            $num_rows = mysql_num_rows($sql);
+            $sql = mysqli_query($conn,"SELECT * FROM users WHERE username='$username' AND removed='no'");
+            $num_rows = mysqli_num_rows($sql);
             if($num_rows == 1){
-                $row = mysql_fetch_assoc($sql);
+                $row = mysqli_fetch_assoc($sql);
                         
                 $id = $row['id'];
                 $fullname = $row['fullname'];
@@ -112,10 +112,10 @@ if(!isset($_SESSION["login_user"])){
 				$age = $from->diff($to)->y;
             }
             #check for privacy settings to determine content to show
-            $privacy_sql = mysql_query("SELECT * FROM privacy_settings WHERE username='$username'");
-            $privacy_num_rows = mysql_num_rows($privacy_sql);
+            $privacy_sql = mysqli_query($conn,"SELECT * FROM privacy_settings WHERE username='$username'");
+            $privacy_num_rows = mysqli_num_rows($privacy_sql);
             if($privacy_num_rows == 1){
-                $privacy_row = mysql_fetch_assoc($privacy_sql);                    
+                $privacy_row = mysqli_fetch_assoc($privacy_sql);                    
 				$age_privacy = $privacy_row['age'];
             }
   
@@ -147,12 +147,12 @@ if(!isset($_SESSION["login_user"])){
                      
                     echo"<a class='connection-button-box'>";			   
                     #check if the logged in user has sent a connection request to the profile owner
-                    $sent_request_sql = mysql_query("SELECT * FROM connection_requests WHERE user_from='$user' AND user_to='$username'");
-                    $sent_request_num_rows = mysql_num_rows($sent_request_sql);
+                    $sent_request_sql = mysqli_query($conn,"SELECT * FROM connection_requests WHERE user_from='$user' AND user_to='$username'");
+                    $sent_request_num_rows = mysqli_num_rows($sent_request_sql);
                     #check if the query result is greater than zero
                     #if a connection request has been sent
                     if($sent_request_num_rows == 1){
-                        $sent_request_row = mysql_fetch_assoc($sent_request_sql);
+                        $sent_request_row = mysqli_fetch_assoc($sent_request_sql);
                             
                         $connection_id = $sent_request_row['id'];
                         $connection_from = $sent_request_row['user_from'];
@@ -172,12 +172,12 @@ if(!isset($_SESSION["login_user"])){
                             }
                        }
                     #check if the logged in user has received a connection request to the profile owner
-                    $received_request_sql = mysql_query("SELECT * FROM connection_requests WHERE user_to='$user' AND user_from='$username'");
-                    $received_request_num_rows = mysql_num_rows($received_request_sql);
+                    $received_request_sql = mysqli_query($conn,"SELECT * FROM connection_requests WHERE user_to='$user' AND user_from='$username'");
+                    $received_request_num_rows = mysqli_num_rows($received_request_sql);
                     #check if the query result is greater than zero
                     #if a connection request has been sent
                     if($received_request_num_rows == 1){
-                        $received_request_row = mysql_fetch_assoc($received_request_sql);
+                        $received_request_row = mysqli_fetch_assoc($received_request_sql);
                             
                         $connection_id = $received_request_row['id'];
                         $connection_from = $received_request_row['user_from'];

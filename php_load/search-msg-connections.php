@@ -14,11 +14,11 @@
 		  }
   $start_from = ($page - 1) * $record_per_page;
   
-  $page_result = mysql_query("(SELECT * FROM users WHERE removed='no' AND 
+  $page_result = mysqli_query($conn,"(SELECT * FROM users WHERE removed='no' AND 
   (MATCH (username,fullname) AGAINST ('$search_msg_username_input'))
   ) ORDER BY time DESC");
 	  
-  $total_records = mysql_num_rows($page_result);
+  $total_records = mysqli_num_rows($page_result);
   $total_pages = ceil($total_records/$record_per_page);
   if($total_pages>1){
 	  echo"
@@ -40,11 +40,11 @@
 	";	
 	  }
 
-  $query = mysql_query("SELECT * FROM users WHERE removed='no' AND  
+  $query = mysqli_query($conn,"SELECT * FROM users WHERE removed='no' AND  
   MATCH (fullname,username) AGAINST ('$search_msg_username_input')
   LIMIT $start_from,$record_per_page");
 
-  while($get_user = mysql_fetch_array($query)){
+  while($get_user = mysqli_fetch_array($query)){
 	  $username = $get_user['username'];
 	  $fullname = $get_user['fullname'];
 	  $profile_pic= $get_user['profile_pic'];
@@ -70,11 +70,11 @@
 	";
   }
   /////////////////////////////////////////	
-  $page_result = mysql_query("(SELECT * FROM users WHERE removed='no' AND 
+  $page_result = mysqli_query($conn,"(SELECT * FROM users WHERE removed='no' AND 
   (MATCH (username,fullname) AGAINST ('$search_msg_username_input'))
   ) ORDER BY time DESC");
   
-  $total_records = mysql_num_rows($page_result);
+  $total_records = mysqli_num_rows($page_result);
   $total_pages = ceil($total_records/$record_per_page);
   
 	if($total_pages>1){

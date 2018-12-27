@@ -48,14 +48,14 @@ if(!isset($_SESSION["login_user"])){
       $get_ret_code = $_GET['ret_code'];
       $get_username = $_GET['username'];
     
-      $sql=mysql_query("SELECT * FROM users WHERE username='$get_username'");
-        $num_sql=mysql_num_rows($sql);
+      $sql=mysqli_query($conn,"SELECT * FROM users WHERE username='$get_username'");
+        $num_sql=mysqli_num_rows($sql);
     
       //check if the username is available in the database
             
       if($num_sql ==1){
   
-          while($row= mysql_fetch_assoc($sql)){
+          while($row= mysqli_fetch_assoc($sql)){
           $db_ret_code=$row['passwordreset'];
           $db_username=$row['username'];
           }

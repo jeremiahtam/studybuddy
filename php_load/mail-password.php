@@ -7,13 +7,13 @@ $time= date('H:i:s');
  
 if(isset($send)){
  //check if emaily exists
- $e_check = mysql_query("SELECT * FROM users WHERE email='$email' AND removed='no'");
- $e_row = mysql_num_rows($e_check);
+ $e_check = mysqli_query($conn,"SELECT * FROM users WHERE email='$email' AND removed='no'");
+ $e_row = mysqli_num_rows($e_check);
  //check if the user email exists in the database
  
  if ($e_row == 1){
 	 
-	 while($row=mysql_fetch_assoc($e_check)){
+	 while($row=mysqli_fetch_assoc($e_check)){
 	 $db_email= $row['email'];
 	 $db_username= $row['username'];
 	 }
@@ -30,7 +30,7 @@ if(isset($send)){
 	 localhost/studybuddy/reset-password.php?ret_code=$ret_code&username=$db_username
 	 ";
 	 
-	 mysql_query("UPDATE users SET passwordreset='$ret_code' WHERE email='$email'");
+	 mysqli_query($conn,"UPDATE users SET passwordreset='$ret_code' WHERE email='$email'");
 	 
 	 mail($to,$subject,$body);
 	 

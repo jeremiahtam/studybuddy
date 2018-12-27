@@ -182,8 +182,8 @@ switch($modal_content){
 		
 	case 'edit-education':
 
-	  $query = mysql_query("SELECT * FROM educational_qualifications WHERE id='$edit_id' AND username='$user'");	  
-	  $get_education = mysql_fetch_array($query);
+	  $query = mysqli_query($conn,"SELECT * FROM educational_qualifications WHERE id='$edit_id' AND username='$user'");	  
+	  $get_education = mysqli_fetch_array($query);
 
 	  $db_institution = $get_education['institution'];
 	  $db_course = $get_education['course'];
@@ -338,8 +338,8 @@ switch($modal_content){
 
 	case 'edit-work':
 
-	  $work_query = mysql_query("SELECT * FROM work_experience WHERE id='$edit_id' AND username='$user'");	  
-	  $get_work = mysql_fetch_array($work_query);
+	  $work_query = mysqli_query($conn,"SELECT * FROM work_experience WHERE id='$edit_id' AND username='$user'");	  
+	  $get_work = mysqli_fetch_array($work_query);
 
 	  $db_organization_name = $get_work['organization_name'];
 	  $db_position_held = $get_work['position_held'];
@@ -495,10 +495,10 @@ switch($modal_content){
 	
 		//////////////////Query to show the content of the messages between two users
 		$query = "SELECT * FROM interested_list WHERE ad_id='$display_id' ORDER BY id DESC LIMIT ".$limit;
-		$result = mysql_query($query);		
-		$num_rows = mysql_num_rows($result);
+		$result = mysqli_query($conn,$query);		
+		$num_rows = mysqli_num_rows($result);
 	
-	while($get_interest = mysql_fetch_array($result)){
+	while($get_interest = mysqli_fetch_array($result)){
 		$ad_id = $get_interest['ad_id'];
 		$interested_user = $get_interest['interested_user'];
 		
@@ -507,8 +507,8 @@ switch($modal_content){
 		$db_time = $get_interest['time'];
 		$db_time = date('g:i a',strtotime($db_time));	
 	
-		$get_interested_user = mysql_query("SELECT * FROM users WHERE username='$interested_user'");
-		$get_interested_user_details = mysql_fetch_assoc($get_interested_user);
+		$get_interested_user = mysqli_query($conn,"SELECT * FROM users WHERE username='$interested_user'");
+		$get_interested_user_details = mysqli_fetch_assoc($get_interested_user);
 		
 		$interested_fullname = $get_interested_user_details['fullname'];
 		$interested_profile_pic = $get_interested_user_details['profile_pic'];
@@ -535,8 +535,8 @@ switch($modal_content){
 	/////////////////////////////////////////	
 	$page_query = "SELECT * FROM interested_list WHERE ad_id='$display_id' ORDER BY id DESC ";
 	
-	$page_result = mysql_query($page_query);
-	$total_records = mysql_num_rows($page_result);
+	$page_result = mysqli_query($conn,$page_query);
+	$total_records = mysqli_num_rows($page_result);
 	$total_pages = ceil($total_records/$record_per_page);
 	
 	if($total_pages > 1){

@@ -6,13 +6,13 @@ include("../inc/db.inc.php");
 $delete_type = $_POST['delete_type'];
 $delete_id = $_POST['delete_id'];
 
-	$delete_sql = mysql_query("DELETE FROM work_experience WHERE id='$delete_id' AND username='$user'");
+	$delete_sql = mysqli_query($conn,"DELETE FROM work_experience WHERE id='$delete_id' AND username='$user'");
 		
 	
-	$sql= mysql_query("SELECT * FROM  work_experience WHERE username='$user'");
-	$num_rows = mysql_num_rows($sql);
+	$sql= mysqli_query($conn,"SELECT * FROM  work_experience WHERE username='$user'");
+	$num_rows = mysqli_num_rows($sql);
 	
-	while($row = mysql_fetch_assoc($sql)){
+	while($row = mysqli_fetch_assoc($sql)){
 		  
 	  $work_id = $row['id'];
 	  $username = $row['username'];

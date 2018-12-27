@@ -21,8 +21,8 @@
 
 	$page_query = "(SELECT * FROM conversations WHERE user_1='$user' OR user_2='$user'
 	ORDER BY date DESC)";
-	$page_result = mysql_query($page_query);
-	$total_records = mysql_num_rows($page_result);
+	$page_result = mysqli_query($conn,$page_query);
+	$total_records = mysqli_num_rows($page_result);
 	$total_pages = ceil($total_records/$record_per_page);
   if($window_width < 992){
 	if($total_pages>1){
@@ -48,43 +48,43 @@
 	  $query = "(SELECT * FROM conversations WHERE user_1='$user' OR user_2='$user'
 	  ORDER BY date DESC LIMIT $start_from,$record_per_page)";
 
-	  $result = mysql_query($query);
+	  $result = mysqli_query($conn,$query);
 
-  while($get_conv = mysql_fetch_array($result)){
+  while($get_conv = mysqli_fetch_array($result)){
 	  $conv_id = $get_conv['id'];
 	  $user_1 = $get_conv['user_1'];
 	  $user_2 = $get_conv['user_2'];
 	  $date = $get_conv['date'];
 	  $time = $get_conv['time'];
 	  		  
-	  $deleted_conv_query = mysql_query("SELECT * FROM deleted_conversations WHERE conversation_id='$conv_id' AND deleted_by='$user'");
-	  $deleted_conv_rows = mysql_num_rows($deleted_conv_query);	  
+	  $deleted_conv_query = mysqli_query($conn,"SELECT * FROM deleted_conversations WHERE conversation_id='$conv_id' AND deleted_by='$user'");
+	  $deleted_conv_rows = mysqli_num_rows($deleted_conv_query);	  
 	  
 	  if($user==$user_1){
 			$connection_name = $user_2;
 		  }else if($user==$user_2){
 			$connection_name = $user_1;
 		  }
-	  $connection_query = mysql_query("SELECT * FROM users WHERE username='$connection_name'");
-	  $connection_details = mysql_fetch_assoc($connection_query);
+	  $connection_query = mysqli_query($conn,"SELECT * FROM users WHERE username='$connection_name'");
+	  $connection_details = mysqli_fetch_assoc($connection_query);
 	  
 	  $connection_fullname = $connection_details['fullname'];
 	  $connection_profile_pic = $connection_details['profile_pic'];
 
 	  if($deleted_conv_rows==0){
 		  //get list of messages from the msg_conversation sent or received starting from the most recent
-		  $last_msg = mysql_query("SELECT * FROM msg_conversations WHERE conv_id='$conv_id' ORDER BY id DESC");
+		  $last_msg = mysqli_query($conn,"SELECT * FROM msg_conversations WHERE conv_id='$conv_id' ORDER BY id DESC");
 		  //get the number of rows of conversation between the two users
-		  $num_rows_last_msg = mysql_num_rows($last_msg);
+		  $num_rows_last_msg = mysqli_num_rows($last_msg);
 		  //start checking the msgs one after the other to see if its been deleted
-		  while($rows_last_msg = mysql_fetch_assoc($last_msg)){
+		  while($rows_last_msg = mysqli_fetch_assoc($last_msg)){
 			  $msg_id = $rows_last_msg['id'];
 			  //check if a message has been deleted
-			  $deleted_msg_query = mysql_query("SELECT * FROM deleted_msgs WHERE msg_id='$msg_id' AND conv_id='$conv_id' AND deleted_by='$user'");
-			  $deleted_msg_rows = mysql_num_rows($deleted_msg_query);
+			  $deleted_msg_query = mysqli_query($conn,"SELECT * FROM deleted_msgs WHERE msg_id='$msg_id' AND conv_id='$conv_id' AND deleted_by='$user'");
+			  $deleted_msg_rows = mysqli_num_rows($deleted_msg_query);
 			  
 			  if($num_rows_last_msg == $deleted_msg_rows){
-				  $delete_empty_conv_query = mysql_query("INSERT INTO deleted_conversations VALUES('','$conv_id','$user','$date','$time')");
+				  $delete_empty_conv_query = mysqli_query($conn,"INSERT INTO deleted_conversations VALUES('','$conv_id','$user','$date','$time')");
 				  continue 2;
 				  break;
 			  }
@@ -169,8 +169,8 @@
 	  $page_query = "(SELECT * FROM conversations WHERE user_1='$user' OR user_2='$user'
 	  ORDER BY date DESC)";
 	  
-	  $page_result = mysql_query($page_query);
-	  $total_records = mysql_num_rows($page_result);
+	  $page_result = mysqli_query($conn,$page_query);
+	  $total_records = mysqli_num_rows($page_result);
 	  $total_pages = ceil($total_records/$record_per_page);
 	  
 	  if($total_pages>1){

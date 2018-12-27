@@ -34,17 +34,17 @@ $time=date('H:i:s');
 	$page_query = "(SELECT * FROM msg_conversations WHERE 
 	((username='$user' AND conv_with='$msg_uname') OR (username='$msg_uname' AND conv_with='$user'))
 	ORDER BY id DESC) ORDER BY id ASC";
-	$page_query_result = mysql_query($page_query);
+	$page_query_result = mysqli_query($conn,$page_query);
 	
-	$page_query_result_rows = mysql_num_rows($page_query_result);
-	$db_data = mysql_fetch_assoc($page_query_result);
+	$page_query_result_rows = mysqli_num_rows($page_query_result);
+	$db_data = mysqli_fetch_assoc($page_query_result);
 	$db_msg_id = $db_data['id'];
 	
-	$deleted_msg_query = mysql_query("SELECT * FROM deleted_msgs WHERE msg_id='$db_msg_id' AND deleted_by='$user'");
-	$deleted_msg_rows = mysql_num_rows($deleted_msg_query);
+	$deleted_msg_query = mysqli_query($conn,"SELECT * FROM deleted_msgs WHERE msg_id='$db_msg_id' AND deleted_by='$user'");
+	$deleted_msg_rows = mysqli_num_rows($deleted_msg_query);
 	
-	$page_result = mysql_query($page_query);
-	$total_records = mysql_num_rows($page_result);
+	$page_result = mysqli_query($conn,$page_query);
+	$total_records = mysqli_num_rows($page_result);
 	$total_pages = ceil($total_records/$record_per_page);
 	
 	if($total_pages>1  && $page_query_result_rows==$deleted_msg_rows){
@@ -71,11 +71,11 @@ $time=date('H:i:s');
 	((username='$user' AND conv_with='$msg_uname') OR (username='$msg_uname' AND conv_with='$user'))
 	ORDER BY id DESC LIMIT ".$limit.") ORDER BY id ASC";
 	
-	$result = mysql_query($query);
+	$result = mysqli_query($conn,$query);
 	
-	$num_rows = mysql_num_rows($result);
+	$num_rows = mysqli_num_rows($result);
 
-while($get_msg = mysql_fetch_array($result)){
+while($get_msg = mysqli_fetch_array($result)){
 	$id = $get_msg['id'];
 	$conv_id = $get_msg['conv_id'];
 	$msg = nl2br($get_msg['msg']);
@@ -88,8 +88,8 @@ while($get_msg = mysql_fetch_array($result)){
 	$db_time = $get_msg['time'];
 	$db_time = date('g:i a',strtotime($db_time));
 	
-	$deleted_msg_query = mysql_query("SELECT * FROM deleted_msgs WHERE msg_id='$id' AND deleted_by='$user'");
-	$deleted_msg_rows = mysql_num_rows($deleted_msg_query);  
+	$deleted_msg_query = mysqli_query($conn,"SELECT * FROM deleted_msgs WHERE msg_id='$id' AND deleted_by='$user'");
+	$deleted_msg_rows = mysqli_num_rows($deleted_msg_query);  
 
 	if($user==$username){
 		  $connection_name = $conv_with;
@@ -97,8 +97,8 @@ while($get_msg = mysql_fetch_array($result)){
 		  $connection_name = $username;
 		}
 
-	$connection_query = mysql_query("SELECT * FROM users WHERE username='$connection_name'");
-	$connection_details = mysql_fetch_assoc($connection_query);
+	$connection_query = mysqli_query($conn,"SELECT * FROM users WHERE username='$connection_name'");
+	$connection_details = mysqli_fetch_assoc($connection_query);
 	
 	$connection_fullname = $connection_details['fullname'];
 	$connection_profile_pic = $connection_details['profile_pic'];
@@ -107,7 +107,7 @@ while($get_msg = mysql_fetch_array($result)){
 	if($deleted_msg_rows==0){
 		//mark every open unread conversation messages as a read message
 		if($seen=='no'){
-		  $mark_as_read = mysql_query("UPDATE msg_conversations SET seen='yes' WHERE conv_id='$conv_id' AND conv_with='$user'");
+		  $mark_as_read = mysqli_query($conn,"UPDATE msg_conversations SET seen='yes' WHERE conv_id='$conv_id' AND conv_with='$user'");
 		}
 		echo"
 		 <div class='";

@@ -4,10 +4,10 @@
   $username = $_POST['username'];  
   
   #get user information from database
-  $sql = mysql_query("SELECT * FROM users WHERE username='$username' AND removed='no'");
-  $num_rows = mysql_num_rows($sql);
+  $sql = mysqli_query($conn,"SELECT * FROM users WHERE username='$username' AND removed='no'");
+  $num_rows = mysqli_num_rows($sql);
   if($num_rows == 1){
-	  $row = mysql_fetch_assoc($sql);
+	  $row = mysqli_fetch_assoc($sql);
 	  		  
 	  $id = $row['id'];
 	  $fullname = $row['fullname'];
@@ -25,10 +25,10 @@
 	  $age = $from->diff($to)->y;
   }
   #check for privacy settings to determine content to show
-  $privacy_sql = mysql_query("SELECT * FROM privacy_settings WHERE username='$username'");
-  $privacy_num_rows = mysql_num_rows($privacy_sql);
+  $privacy_sql = mysqli_query($conn,"SELECT * FROM privacy_settings WHERE username='$username'");
+  $privacy_num_rows = mysqli_num_rows($privacy_sql);
   if($privacy_num_rows == 1){
-	  $privacy_row = mysql_fetch_assoc($privacy_sql);
+	  $privacy_row = mysqli_fetch_assoc($privacy_sql);
 		  
 	  $phone_privacy = $privacy_row['phone'];
 	  $email_privacy = $privacy_row['email'];

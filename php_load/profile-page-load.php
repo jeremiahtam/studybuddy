@@ -8,8 +8,8 @@ $page=$_POST['page'];
 switch($profile_page_type){
 	
 	case 'ads':
-	   $ads_sql= mysql_query("SELECT * FROM ads WHERE username='$username' AND removed='no'");
-	   $ads_sql_num_rows = mysql_num_rows($ads_sql);
+	   $ads_sql= mysqli_query($conn,"SELECT * FROM ads WHERE username='$username' AND removed='no'");
+	   $ads_sql_num_rows = mysqli_num_rows($ads_sql);
 
 	  //if there are no connections available
 	  if($ads_sql_num_rows == 0){
@@ -38,11 +38,11 @@ switch($profile_page_type){
 			
 			$query = "SELECT * FROM ads WHERE username='$username' AND removed='no' ORDER BY id DESC LIMIT $start_from,$record_per_page";
 			
-			$result = mysql_query($query);
+			$result = mysqli_query($conn,$query);
 			
 			echo"<div class='row'>";
 			
-			while($get_ads = mysql_fetch_array($result)){
+			while($get_ads = mysqli_fetch_array($result)){
 				  $db_id = $get_ads['id'];
 				  $db_username = $get_ads['username'];
 				  $db_in_search_of = $get_ads['in_search_of'];
@@ -66,8 +66,8 @@ switch($profile_page_type){
 				  $convertedTime = $timeAgoObject -> convert_datetime($ts); // Convert Date Time
 				  $when = $timeAgoObject -> makeAgo($convertedTime); // Then convert to ago time
 
-				  $ads_fullname_query = mysql_query("SELECT * FROM users WHERE username='$db_username'");
-				  $ads_db_details = mysql_fetch_assoc($ads_fullname_query);
+				  $ads_fullname_query = mysqli_query($conn,"SELECT * FROM users WHERE username='$db_username'");
+				  $ads_db_details = mysqli_fetch_assoc($ads_fullname_query);
 				  
 				  $ads_fullname = $ads_db_details['fullname'];
 				  $ads_profile_pic = $ads_db_details['profile_pic'];
@@ -114,8 +114,8 @@ switch($profile_page_type){
 						<div class='interest-count'>
 						  <a class='count_id_$db_id modal-action' data-display-id='$db_id' data-display-type='display-ad-interest' id='display-ad-interest' data-toggle='modal' data-target='#modal'>";
 						//count how many people are interested in this ad post
-						$count_sql = mysql_query("SELECT * FROM interested_list WHERE ad_id='$db_id'");
-						$count_sql_rows = mysql_num_rows($count_sql);
+						$count_sql = mysqli_query($conn,"SELECT * FROM interested_list WHERE ad_id='$db_id'");
+						$count_sql_rows = mysqli_num_rows($count_sql);
 						//only display the number of interests if its greater than zero
 						if($count_sql_rows>0){
 						echo "<span class='ion-coffee'></span> <span class='number-count'>$count_sql_rows</span>";
@@ -132,8 +132,8 @@ switch($profile_page_type){
 					  <div class='panel-footer'>
 						<div class='post-action'><a class=' ";
 						//check database if this user is already interested in this ad
-						$check_sql = mysql_query("SELECT * FROM interested_list WHERE ad_id='$db_id' and interested_user='$user'");
-						$check_rows = mysql_num_rows($check_sql);
+						$check_sql = mysqli_query($conn,"SELECT * FROM interested_list WHERE ad_id='$db_id' and interested_user='$user'");
+						$check_rows = mysqli_num_rows($check_sql);
 						//if the user is not yet interested, display add-interest-btn
 						if($check_rows==0){
 						  echo"add-interest-btn";
@@ -154,8 +154,8 @@ switch($profile_page_type){
 			   echo"</div><!--end row-->";
 			   /////////////////////////////////////////	
 				$page_query = "SELECT * FROM ads WHERE username='$username' AND removed='no' ORDER BY id DESC";
-				$page_result = mysql_query($page_query);
-				$total_records = mysql_num_rows($page_result);
+				$page_result = mysqli_query($conn,$page_query);
+				$total_records = mysqli_num_rows($page_result);
 				$total_pages = ceil($total_records/$record_per_page);
 				
 			  if($total_pages>1){
@@ -198,8 +198,8 @@ switch($profile_page_type){
 	
 	case 'connections':
 
-	   $connection_sql= mysql_query("SELECT * FROM connection_requests WHERE (user_from='$username' OR user_to='$username') AND status='connected'");
-	   $connection_sql_num_rows = mysql_num_rows($connection_sql);
+	   $connection_sql= mysqli_query($conn,"SELECT * FROM connection_requests WHERE (user_from='$username' OR user_to='$username') AND status='connected'");
+	   $connection_sql_num_rows = mysqli_num_rows($connection_sql);
 
 	   //if there are no connections available
 	  if($connection_sql_num_rows==0){
@@ -227,13 +227,13 @@ switch($profile_page_type){
 			(user_from='$username' OR user_to='$username') AND status='connected'
 			ORDER BY id DESC LIMIT $start_from,$record_per_page";
 			
-			$result = mysql_query($query);
+			$result = mysqli_query($conn,$query);
 			
 			echo"
 			<div class='row'>
 			";
 			
-			while($get_connections = mysql_fetch_array($result)){
+			while($get_connections = mysqli_fetch_array($result)){
 				  $id = $get_connections['id'];
 				  $user_from = $get_connections['user_from'];
 				  $user_to = $get_connections['user_to'];
@@ -244,8 +244,8 @@ switch($profile_page_type){
 					  }else if($username==$user_to){
 					  $connection_name = $user_from;
 					  }
-				  $connection_query = mysql_query("SELECT * FROM users WHERE username='$connection_name'");
-				  $connection_details = mysql_fetch_assoc($connection_query);
+				  $connection_query = mysqli_query($conn,"SELECT * FROM users WHERE username='$connection_name'");
+				  $connection_details = mysqli_fetch_assoc($connection_query);
 				  
 				  $connection_fullname = $connection_details['fullname'];
 				  $connection_profile_pic = $connection_details['profile_pic'];
@@ -292,12 +292,12 @@ switch($profile_page_type){
 							if($user!==$connection_name){
 								  echo"<p class='connection-btn'>";			   
 								  #check if the logged in user has sent a connection request to the individual
-								  $sent_request_sql = mysql_query("SELECT * FROM connection_requests WHERE user_from='$user' AND user_to='$connection_name'");
-								  $sent_request_num_rows = mysql_num_rows($sent_request_sql);
+								  $sent_request_sql = mysqli_query($conn,"SELECT * FROM connection_requests WHERE user_from='$user' AND user_to='$connection_name'");
+								  $sent_request_num_rows = mysqli_num_rows($sent_request_sql);
 								  #check if the query result is greater than zero
 								  #if a connection request has been sent
 								  if($sent_request_num_rows == 1){
-									  $sent_request_row = mysql_fetch_assoc($sent_request_sql);
+									  $sent_request_row = mysqli_fetch_assoc($sent_request_sql);
 										  
 									  $connection_id = $sent_request_row['id'];
 									  $connection_from = $sent_request_row['user_from'];
@@ -317,12 +317,12 @@ switch($profile_page_type){
 										  }
 									 }
 								  #check if the logged in user has received a connection request to the profile owner
-								  $received_request_sql = mysql_query("SELECT * FROM connection_requests WHERE user_to='$user' AND user_from='$connection_name'");
-								  $received_request_num_rows = mysql_num_rows($received_request_sql);
+								  $received_request_sql = mysqli_query($conn,"SELECT * FROM connection_requests WHERE user_to='$user' AND user_from='$connection_name'");
+								  $received_request_num_rows = mysqli_num_rows($received_request_sql);
 								  #check if the query result is greater than zero
 								  #if a connection request has been sent
 								  if($received_request_num_rows == 1){
-									  $received_request_row = mysql_fetch_assoc($received_request_sql);
+									  $received_request_row = mysqli_fetch_assoc($received_request_sql);
 										  
 									  $connection_id = $received_request_row['id'];
 									  $connection_from = $received_request_row['user_from'];
@@ -369,8 +369,8 @@ switch($profile_page_type){
 				$page_query = "SELECT * FROM connection_requests WHERE 
 			    (user_from='$username' OR user_to='$username') AND status='connected'
 			    ORDER BY id DESC";
-				$page_result = mysql_query($page_query);
-				$total_records = mysql_num_rows($page_result);
+				$page_result = mysqli_query($conn,$page_query);
+				$total_records = mysqli_num_rows($page_result);
 				$total_pages = ceil($total_records/$record_per_page);
 				
 			  if($total_pages>1){
@@ -410,10 +410,10 @@ switch($profile_page_type){
 		break;
 
 	case 'about':
-	  $sql = mysql_query("SELECT * FROM users WHERE username='$username' AND removed='no'");
-	  $num_rows = mysql_num_rows($sql);
+	  $sql = mysqli_query($conn,"SELECT * FROM users WHERE username='$username' AND removed='no'");
+	  $num_rows = mysqli_num_rows($sql);
 	  if($num_rows == 1){
-		  $row = mysql_fetch_assoc($sql);
+		  $row = mysqli_fetch_assoc($sql);
 				  
 		  $id = $row['id'];
 		  $fullname = $row['fullname'];
@@ -460,10 +460,10 @@ switch($profile_page_type){
 				</div>
                 <div class='panel-body'>";
  
-				$edu_sql= mysql_query("SELECT * FROM educational_qualifications WHERE username='$username'");
-				$edu_num_rows = mysql_num_rows($edu_sql);
+				$edu_sql= mysqli_query($conn,"SELECT * FROM educational_qualifications WHERE username='$username'");
+				$edu_num_rows = mysqli_num_rows($edu_sql);
 				
-				while($edu_row = mysql_fetch_assoc($edu_sql)){
+				while($edu_row = mysqli_fetch_assoc($edu_sql)){
 					  
 				  $edu_id = $edu_row['id'];
 				  $edu_username = $edu_row['username'];
@@ -521,10 +521,10 @@ switch($profile_page_type){
 				echo"</div>
                 <div class='panel-body'>";
 				
-				$work_sql= mysql_query("SELECT * FROM work_experience WHERE username='$username'");
-				$work_num_rows = mysql_num_rows($work_sql);
+				$work_sql= mysqli_query($conn,"SELECT * FROM work_experience WHERE username='$username'");
+				$work_num_rows = mysqli_num_rows($work_sql);
 				
-				while($work_row = mysql_fetch_assoc($work_sql)){
+				while($work_row = mysqli_fetch_assoc($work_sql)){
 					  
 				  $work_id = $work_row['id'];
 				  $work_username = $work_row['username'];

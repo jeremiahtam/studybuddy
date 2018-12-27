@@ -24,15 +24,15 @@ if(!isset($_SESSION["login_user"])){
 	header("Location: http://localhost/studybuddy/home");
 	   }
  if (isset($_GET['msg_username'])){
-	  $msg_username = mysql_real_escape_string($_GET['msg_username']);
+	  $msg_username = mysqli_real_escape_string($_GET['msg_username']);
 	  //if the user tries to send a message to himself, redirect the user
 	  if($msg_username==$user){
 		  header("Location: http://localhost/studybuddy/home");
 		}else{
-		  $query = mysql_query("SELECT * FROM users WHERE username='$msg_username' AND removed='no' ");
-		  $num_rows = mysql_num_rows($query);
+		  $query = mysqli_query($conn,"SELECT * FROM users WHERE username='$msg_username' AND removed='no' ");
+		  $num_rows = mysqli_num_rows($query);
 		  if($num_rows==1){
-		  $row = mysql_fetch_assoc($query);
+		  $row = mysqli_fetch_assoc($query);
 		  $fullname = $row['fullname'];
 		  $profile_pic = $row['profile_pic'];
 		  if(empty($profile_pic)){
@@ -44,9 +44,9 @@ if(!isset($_SESSION["login_user"])){
 			header("Location: http://localhost/studybuddy/home");
 			  }
 		
-		  $conv_query = mysql_query("SELECT * FROM conversations WHERE
+		  $conv_query = mysqli_query($conn,"SELECT * FROM conversations WHERE
 		((user_1='$user' AND user_2='$msg_username') OR (user_2='$msg_username' AND user_1='$user')) ");
-		  $conv_details = mysql_fetch_assoc($conv_query);
+		  $conv_details = mysqli_fetch_assoc($conv_query);
 		  $conv_id = $conv_details['id'];			  
 		}
 	}else{

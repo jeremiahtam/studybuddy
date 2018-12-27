@@ -17,11 +17,11 @@ include("../inc/db.inc.php");
 		
 		
 		if(isset($user)){
-			mysql_query("UPDATE users SET profile_pic='$imageName' WHERE username='$user' AND removed='no'");
+			mysqli_query($conn,"UPDATE users SET profile_pic='$imageName' WHERE username='$user' AND removed='no'");
 		
 			//echo '<div class="positive-alert text-success bg-success">Successfully Uploaded</div>';
-			$sql= mysql_query("SELECT profile_pic FROM users WHERE username='$user' AND removed='no'");
-			$row = mysql_fetch_assoc($sql);
+			$sql= mysqli_query($conn,"SELECT profile_pic FROM users WHERE username='$user' AND removed='no'");
+			$row = mysqli_fetch_assoc($sql);
 			$profile_pic=$row['profile_pic'];
 			$profile_pic = $profile_pic;
 			echo "img/profile_pic/$profile_pic";

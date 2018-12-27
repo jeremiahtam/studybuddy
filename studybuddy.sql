@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 19, 2018 at 05:49 PM
+-- Generation Time: Dec 25, 2018 at 06:17 PM
 -- Server version: 5.6.11
 -- PHP Version: 5.5.1
 
@@ -137,10 +137,10 @@ CREATE TABLE IF NOT EXISTS `conversations` (
 
 INSERT INTO `conversations` (`id`, `user_1`, `user_2`, `date`, `time`) VALUES
 (1, 'jeremiahtam', 'desireesite', '2018-01-31', '21:37:17'),
-(2, 'jeremiahtam', 'johndoe', '2018-02-10', '13:46:46'),
+(2, 'jeremiahtam', 'johndoe', '2018-10-06', '22:03:08'),
 (3, 'desireesite', 'preciousebi', '2018-03-24', '20:55:41'),
 (4, 'jeremiahtam', 'preciousebi', '2018-04-17', '11:56:35'),
-(5, 'johndoe', 'preciousebi', '2018-02-05', '14:08:34');
+(5, 'johndoe', 'preciousebi', '2018-06-12', '13:50:34');
 
 -- --------------------------------------------------------
 
@@ -263,14 +263,13 @@ CREATE TABLE IF NOT EXISTS `interested_list` (
   `date` varchar(10) NOT NULL,
   `time` varchar(10) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=57 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=59 ;
 
 --
 -- Dumping data for table `interested_list`
 --
 
 INSERT INTO `interested_list` (`id`, `interested_user`, `ad_id`, `date`, `time`) VALUES
-(11, 'johndoe', '3', '2017-11-17', '13:18:53'),
 (24, 'johndoe', '4', '2018-01-08', '16:35:47'),
 (26, 'desireesite', '3', '2018-01-09', '20:01:27'),
 (28, 'preciousebi', '3', '2018-01-23', '15:22:55'),
@@ -281,7 +280,9 @@ INSERT INTO `interested_list` (`id`, `interested_user`, `ad_id`, `date`, `time`)
 (53, 'preciousebi', '4', '2018-03-13', '23:22:41'),
 (54, 'preciousebi', '5', '2018-03-14', '09:38:25'),
 (55, 'johndoe', '1', '2018-03-25', '22:32:14'),
-(56, 'jeremiahtam', '6', '2018-04-17', '11:55:06');
+(56, 'jeremiahtam', '6', '2018-04-17', '11:55:06'),
+(57, 'johndoe', '5', '2018-05-27', '16:31:16'),
+(58, 'johndoe', '3', '2018-10-26', '18:06:22');
 
 -- --------------------------------------------------------
 
@@ -300,7 +301,7 @@ CREATE TABLE IF NOT EXISTS `msg_conversations` (
   `date` varchar(225) NOT NULL,
   `time` varchar(225) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=45 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=50 ;
 
 --
 -- Dumping data for table `msg_conversations`
@@ -346,11 +347,16 @@ INSERT INTO `msg_conversations` (`id`, `conv_id`, `msg`, `type`, `username`, `co
 (37, 4, '?', 'text', 'jeremiahtam', 'preciousebi', 'yes', '2018-02-02', '11:45:17'),
 (38, 2, 'we doing good.', 'text', 'johndoe', 'jeremiahtam', 'yes', '2018-02-02', '16:49:34'),
 (39, 5, 'sup', 'text', 'johndoe', 'preciousebi', 'yes', '2018-02-05', '14:08:34'),
-(40, 2, 'hi', 'text', 'jeremiahtam', 'johndoe', 'no', '2018-02-10', '13:46:46'),
+(40, 2, 'hi', 'text', 'jeremiahtam', 'johndoe', 'yes', '2018-02-10', '13:46:46'),
 (41, 3, 'sup', 'text', 'preciousebi', 'desireesite', 'yes', '2018-03-14', '00:08:35'),
 (42, 3, 'am good fam.', 'text', 'desireesite', 'preciousebi', 'yes', '2018-03-24', '20:55:41'),
 (43, 4, 'hi', 'text', 'preciousebi', 'jeremiahtam', 'yes', '2018-04-17', '11:56:22'),
-(44, 4, 'how are you', 'text', 'jeremiahtam', 'preciousebi', 'yes', '2018-04-17', '11:56:35');
+(44, 4, 'how are you', 'text', 'jeremiahtam', 'preciousebi', 'yes', '2018-04-17', '11:56:35'),
+(45, 5, 'hi', 'text', 'johndoe', 'preciousebi', 'no', '2018-05-27', '16:40:42'),
+(46, 5, 'iuhrlgsmkl', 'text', 'johndoe', 'preciousebi', 'no', '2018-06-12', '13:50:34'),
+(47, 2, 'hello', 'text', 'johndoe', 'jeremiahtam', 'no', '2018-07-18', '17:08:20'),
+(48, 2, 'hi', 'text', 'johndoe', 'jeremiahtam', 'no', '2018-09-19', '12:11:44'),
+(49, 2, 'hello', 'text', 'johndoe', 'jeremiahtam', 'no', '2018-10-06', '22:03:08');
 
 -- --------------------------------------------------------
 
@@ -376,7 +382,7 @@ CREATE TABLE IF NOT EXISTS `notification_settings` (
 
 INSERT INTO `notification_settings` (`id`, `username`, `requests`, `comments`, `replies`, `messages`, `date`, `time`) VALUES
 (1, 'jeremiahtam', 'yes', 'yes', 'yes', 'yes', '2017-10-08', '13:35:38'),
-(2, 'johndoe', 'yes', 'yes', 'yes', 'yes', '2017-10-27', '00:19:54'),
+(2, 'johndoe', 'yes', 'no', 'no', 'no', '2018-10-06', '22:03:59'),
 (3, 'nuhogambo', 'yes', 'yes', 'yes', 'yes', '2017-10-24', '21:12:59'),
 (4, 'preciousebi', 'yes', 'yes', 'yes', 'yes', '2017-11-07', '16:48:53'),
 (5, 'desireesite', 'no', 'yes', 'yes', 'yes', '2017-12-22', '17:14:29');
@@ -405,7 +411,7 @@ CREATE TABLE IF NOT EXISTS `privacy_settings` (
 
 INSERT INTO `privacy_settings` (`id`, `username`, `phone`, `email`, `age`, `location`, `date`, `time`) VALUES
 (1, 'jeremiahtam', 'private', 'private', 'public', 'public', '2018-01-03', '20:53:19'),
-(2, 'johndoe', 'public', 'public', 'public', 'public', '2017-10-26', '23:39:18'),
+(2, 'johndoe', 'private', 'public', 'public', 'public', '2018-07-31', '12:06:35'),
 (3, 'nuhogambo', 'public', 'public', 'public', 'public', '2017-10-24', '21:12:59'),
 (4, 'preciousebi', 'public', 'public', 'public', 'public', '2017-11-07', '16:48:53'),
 (5, 'desireesite', 'public', 'public', 'public', 'public', '2017-11-08', '08:45:58');
@@ -503,7 +509,7 @@ CREATE TABLE IF NOT EXISTS `work_experience` (
   `date` varchar(225) NOT NULL,
   `time` varchar(225) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `work_experience`
@@ -511,7 +517,8 @@ CREATE TABLE IF NOT EXISTS `work_experience` (
 
 INSERT INTO `work_experience` (`id`, `username`, `organization_name`, `position_held`, `start_date`, `end_date`, `currently_there`, `date`, `time`) VALUES
 (1, 'jeremiahtam', 'NPDC', 'Manager', '2017-09-22', '', 'yes', '2017-11-22', '11:42:13'),
-(2, 'jeremiahtam', 'NNPC', 'Manager', '2017-09-22', '', 'yes', '2017-11-22', '11:26:37');
+(2, 'jeremiahtam', 'NNPC', 'Manager', '2017-09-22', '', 'yes', '2017-11-22', '11:26:37'),
+(3, '', '', '', '', '', '', '2018-10-23', '03:15:03');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

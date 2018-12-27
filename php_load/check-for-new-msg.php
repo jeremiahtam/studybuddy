@@ -11,13 +11,13 @@ $time=date('H:i:s');
 $query = "(SELECT * FROM msg_conversations WHERE username='$msg_uname' AND conv_with='$user' AND seen='no'
 ORDER BY id DESC) ORDER BY id ASC";
 	
-$result = mysql_query($query);
-$num_rows = mysql_num_rows($result);
+$result = mysqli_query($conn,$query);
+$num_rows = mysqli_num_rows($result);
 
 //if its desktop screen size, get the content of newly received messages and post them
 //if($window_width>992){
 	//start while loop
-	while($get_msg = mysql_fetch_array($result)){
+	while($get_msg = mysqli_fetch_array($result)){
 	  $id = $get_msg['id'];
 	  $conv_id = $get_msg['conv_id'];
 	  $msg = nl2br($get_msg['msg']);
@@ -30,8 +30,8 @@ $num_rows = mysql_num_rows($result);
 	  $db_time = $get_msg['time'];
 	  $db_time = date('g:i a',strtotime($db_time));
 	  
-	  $deleted_msg_query = mysql_query("SELECT * FROM deleted_msgs WHERE msg_id='$id' AND deleted_by='$user'");
-	  $deleted_msg_rows = mysql_num_rows($deleted_msg_query);  
+	  $deleted_msg_query = mysqli_query($conn,"SELECT * FROM deleted_msgs WHERE msg_id='$id' AND deleted_by='$user'");
+	  $deleted_msg_rows = mysqli_num_rows($deleted_msg_query);  
   
 	  if($user==$username){
 			$connection_name = $conv_with;
@@ -39,8 +39,8 @@ $num_rows = mysql_num_rows($result);
 			$connection_name = $username;
 		  }
   
-	  $connection_query = mysql_query("SELECT * FROM users WHERE username='$connection_name'");
-	  $connection_details = mysql_fetch_assoc($connection_query);
+	  $connection_query = mysqli_query($conn,"SELECT * FROM users WHERE username='$connection_name'");
+	  $connection_details = mysqli_fetch_assoc($connection_query);
 	  
 	  $connection_fullname = $connection_details['fullname'];
 	  $connection_profile_pic = $connection_details['profile_pic'];
@@ -76,7 +76,7 @@ $num_rows = mysql_num_rows($result);
 	   </div>";
 		  //mark every open unread conversation messages as a read message
 		  if($seen=='no'){
-			$mark_as_read = mysql_query("UPDATE msg_conversations SET seen='yes' WHERE conv_id='$conv_id' AND conv_with='$user'");
+			$mark_as_read = mysqli_query($conn,"UPDATE msg_conversations SET seen='yes' WHERE conv_id='$conv_id' AND conv_with='$user'");
 		  }
   
 	  }//end deleted rows	  

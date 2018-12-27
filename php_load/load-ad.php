@@ -9,15 +9,15 @@ $ad_id = htmlentities($_POST['ad_id']);
 $date = date('Y-m-d');
 $time = date('H:i:s');
 
-$ad_sql= mysql_query("SELECT * FROM ads WHERE id='$ad_id' AND removed='no'");
-$ad_num_rows = mysql_num_rows($ad_sql);
+$ad_sql= mysqli_query($conn,"SELECT * FROM ads WHERE id='$ad_id' AND removed='no'");
+$ad_num_rows = mysqli_num_rows($ad_sql);
 if($ad_num_rows==1){
 
 
 
 
 
-	while($ad_row = mysql_fetch_assoc($ad_sql)){
+	while($ad_row = mysqli_fetch_assoc($ad_sql)){
   
 	  $ad_id = $ad_row['id'];
 	  $ad_username = $ad_row['username'];
@@ -39,8 +39,8 @@ if($ad_num_rows==1){
 	  $time = $ad_row['time'];
 	  $removed = $ad_row['removed'];
 
-	  $user_sql = mysql_query("SELECT * FROM users WHERE username='$ad_username' AND removed='no'");
-	  $user_sql_row = mysql_fetch_assoc($user_sql);
+	  $user_sql = mysqli_query($conn,"SELECT * FROM users WHERE username='$ad_username' AND removed='no'");
+	  $user_sql_row = mysqli_fetch_assoc($user_sql);
 	  $fullname = $user_sql_row['fullname'];
 	  $location = $user_sql_row['location'];
 	  $profile_pic = $user_sql_row['profile_pic'];
@@ -113,8 +113,8 @@ if($ad_num_rows==1){
 		  <div class='interested-section'>
 			<div class='post-action pull-right'><a class=' ";
 			  //check database if this user is already interested in this ad
-			  $check_sql = mysql_query("SELECT * FROM interested_list WHERE ad_id='$ad_id' and interested_user='$user'");
-			  $check_rows = mysql_num_rows($check_sql);
+			  $check_sql = mysqli_query($conn,"SELECT * FROM interested_list WHERE ad_id='$ad_id' and interested_user='$user'");
+			  $check_rows = mysqli_num_rows($check_sql);
 			  //if the user is not yet interested, display add-interest-btn
 			  if($check_rows==0){
 				echo"add-interest-btn";
@@ -127,8 +127,8 @@ if($ad_num_rows==1){
 			<div class='post-action pull-right'>
 			  <a class='count_id_$ad_id modal-action' data-display-id='$ad_id' data-display-type='display-ad-interest' id='display-ad-interest' data-toggle='modal' data-target='#modal'>";
 				//count how many people are interested in this ad post
-				$count_sql = mysql_query("SELECT * FROM interested_list WHERE ad_id='$ad_id'");
-				$count_sql_rows = mysql_num_rows($count_sql);
+				$count_sql = mysqli_query($conn,"SELECT * FROM interested_list WHERE ad_id='$ad_id'");
+				$count_sql_rows = mysqli_num_rows($count_sql);
 				//only display the number of interests if its greater than zero
 				if($count_sql_rows>0){
 				echo "<span class='ion-coffee'></span> <span class='number-count'>$count_sql_rows</span>";
@@ -155,18 +155,18 @@ if($ad_num_rows==1){
 		  
 			<div class='comment-box'>";
 			
-			$comment_sql = mysql_query("SELECT * FROM comments WHERE ad_id='$ad_id' AND removed='no' ORDER BY date DESC");
-			$comment_rows = mysql_num_rows($comment_sql);
+			$comment_sql = mysqli_query($conn,"SELECT * FROM comments WHERE ad_id='$ad_id' AND removed='no' ORDER BY date DESC");
+			$comment_rows = mysqli_num_rows($comment_sql);
 			if($comment_rows>0){
-			  while($comment_sql_row = mysql_fetch_assoc($comment_sql)){
+			  while($comment_sql_row = mysqli_fetch_assoc($comment_sql)){
 				  $comment_id = $comment_sql_row['id'];
 				  $comment_text = $comment_sql_row['comment'];
 				  $comment_username = $comment_sql_row['username'];
 				  $comment_date = $comment_sql_row['date'];
 				  $comment_time = $comment_sql_row['time'];
 				  
-				  $comment_user_sql = mysql_query("SELECT * FROM users WHERE username='$comment_username' AND removed='no'");
-				  $comment_user_sql_row = mysql_fetch_assoc($comment_user_sql);
+				  $comment_user_sql = mysqli_query($conn,"SELECT * FROM users WHERE username='$comment_username' AND removed='no'");
+				  $comment_user_sql_row = mysqli_fetch_assoc($comment_user_sql);
 				  $comment_fullname = $comment_user_sql_row['fullname'];
 				  $comment_profile_pic = $comment_user_sql_row['profile_pic'];
 				  

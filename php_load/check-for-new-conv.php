@@ -13,10 +13,10 @@ if(isset($_SESSION["last-msg-id"])){
 
 /////////////////////////////////////////	
 $query = "(SELECT * FROM msg_conversations WHERE conv_with='$user' AND seen='no' ORDER BY id DESC LIMIT 1)";	
-$result = mysql_query($query);
-$num_rows = mysql_num_rows($result);
+$result = mysqli_query($conn,$query);
+$num_rows = mysqli_num_rows($result);
 
-$row = mysql_fetch_assoc($result);
+$row = mysqli_fetch_assoc($result);
 $db_last_msg_id = $row['id'];
 
 if($num_rows == 1){

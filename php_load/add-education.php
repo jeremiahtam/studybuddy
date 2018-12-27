@@ -12,14 +12,14 @@ $form_course_end_date = htmlentities($_POST['course_end_date']);
 $date= date('Y-m-d');
 $time= date('H:i:s');
 
-	$insert_sql = mysql_query("INSERT INTO educational_qualifications VALUES ('','$user','$form_institution','$form_course','$form_degree_obtained','$form_course_start_date','$form_course_end_date','$date','$time')");
+	$insert_sql = mysqli_query($conn,"INSERT INTO educational_qualifications VALUES ('','$user','$form_institution','$form_course','$form_degree_obtained','$form_course_start_date','$form_course_end_date','$date','$time')");
 	
 	
 	
-	$sql= mysql_query("SELECT * FROM educational_qualifications WHERE username='$user'");
-	$num_rows = mysql_num_rows($sql);
+	$sql= mysqli_query($conn,"SELECT * FROM educational_qualifications WHERE username='$user'");
+	$num_rows = mysqli_num_rows($sql);
 	
-	while($row = mysql_fetch_assoc($sql)){
+	while($row = mysqli_fetch_assoc($sql)){
 		  
 	  $edu_id = $row['id'];
 	  $username = $row['username'];
