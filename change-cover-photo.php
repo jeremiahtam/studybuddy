@@ -11,7 +11,7 @@ if(!isset($_SESSION["login_user"])){
 if(!isset($_SESSION["login_user"])){
 	header("Location: http://localhost/studybuddy/home");
 	   }
-  include("/inc/db.inc.php");
+  include("./inc/db.inc.php");
  ?>
 
 <!doctype html>

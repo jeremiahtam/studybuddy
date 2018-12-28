@@ -10,7 +10,7 @@ if(!isset($_SESSION["login_user"])){
 
   //get the ad_id
   if(isset($_GET['ad_id'])){
-	 $ad_id = mysqli_real_escape_string($_GET['ad_id']);
+	 $ad_id = mysqli_real_escape_string($conn,$_GET['ad_id']);
 	if(!empty($ad_id)){
 
 	}else{

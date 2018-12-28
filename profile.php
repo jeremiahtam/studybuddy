@@ -7,10 +7,10 @@ if(!isset($_SESSION["login_user"])){
 	   {
 	$user = $_SESSION["login_user"];
 	   }
-  include("/inc/db.inc.php");
+  include("./inc/db.inc.php");
   
   if (isset($_GET['u'])){
-  $username = mysqli_real_escape_string($_GET['u']);
+  $username = mysqli_real_escape_string($conn,$_GET['u']);
   if (!empty($username)){
   //check user exists
   $check = mysqli_query($conn,"SELECT * FROM users WHERE username='$username' AND removed='no'");

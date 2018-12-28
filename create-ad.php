@@ -7,7 +7,7 @@ if(!isset($_SESSION["login_user"])){
 	   {
 	$user = $_SESSION["login_user"];
 	   }
-  include("/inc/db.inc.php");
+  include("./inc/db.inc.php");
   
   if (!isset($_SESSION["login_user"])){
 	  header("Location: http://localhost/studybuddy/login");

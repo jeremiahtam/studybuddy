@@ -6,21 +6,21 @@ if(!isset($_SESSION["login_user"])){
 	   {
 	$user = $_SESSION["login_user"];
 	   }
-include("/inc/db.inc.php");
+include("./inc/db.inc.php");
 
 //get the category
 if(isset($_GET['category'])){
-  $category = mysql_real_escape_string($_GET['category']);
+  $category = mysqli_real_escape_string($conn,$_GET['category']);
   //check if $category is not empty
   if(!empty($category)){
 	  
 	  if(isset($_GET['study_area'])){	
-		$study_area = mysql_real_escape_string($_GET['study_area']);
+		$study_area = mysqli_real_escape_string($conn,$_GET['study_area']);
 		//check if $category is not empty
 		if(!empty($study_area)){
  
 		  if(isset($_GET['concentration'])){	
-			$concentration = mysql_real_escape_string($_GET['concentration']);
+			$concentration = mysqli_real_escape_string($conn,$_GET['concentration']);
 			if(!empty($concentration)){
 
   				if(isset($_GET['page'])){	

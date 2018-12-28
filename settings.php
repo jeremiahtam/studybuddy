@@ -6,13 +6,13 @@
     {
     $user = $_SESSION["login_user"];
     }
-  include("/inc/db.inc.php");
+  include("./inc/db.inc.php");
   if(!isset($user)){
     header("Location: http://localhost/studybuddy/home");
   }
 
   if (isset($_GET['settings_page'])){
-	  $settings_page = mysqli_real_escape_string($_GET['settings_page']);
+	  $settings_page = mysqli_real_escape_string($conn,$_GET['settings_page']);
     }else{
 		$settings_page ="";
 		}

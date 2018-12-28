@@ -1,6 +1,6 @@
 <?php
 session_start(); 
-include("/inc/db.inc.php");
+include("./inc/db.inc.php");
 
 if(!isset($_SESSION["login_user"])){
 	 }else{
@@ -24,7 +24,7 @@ if(!isset($_SESSION["login_user"])){
 	header("Location: http://localhost/studybuddy/home");
 	   }
  if (isset($_GET['msg_username'])){
-	  $msg_username = mysqli_real_escape_string($_GET['msg_username']);
+	  $msg_username = mysqli_real_escape_string($conn,$_GET['msg_username']);
 	  //if the user tries to send a message to himself, redirect the user
 	  if($msg_username==$user){
 		  header("Location: http://localhost/studybuddy/home");
