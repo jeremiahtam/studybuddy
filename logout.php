@@ -8,7 +8,8 @@ if(!isset($_SESSION["user_login"])){
 	{
 	$user = $_SESSION["user_login"];
 		}
-session_destroy();
+//session_destroy();
+unset($_SESSION['user_login']);
 
 header("Location: http://localhost/studybuddy/home");
 ?>
