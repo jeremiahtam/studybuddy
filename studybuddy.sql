@@ -1,26 +1,26 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.4.1
--- http://www.phpmyadmin.net
+-- version 4.9.2
+-- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 25, 2018 at 06:17 PM
--- Server version: 5.6.11
--- PHP Version: 5.5.1
+-- Generation Time: Jan 20, 2021 at 08:48 PM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.4.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `studybuddy`
 --
-CREATE DATABASE IF NOT EXISTS `studybuddy` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `studybuddy`;
 
 -- --------------------------------------------------------
 
@@ -28,8 +28,8 @@ USE `studybuddy`;
 -- Table structure for table `ads`
 --
 
-CREATE TABLE IF NOT EXISTS `ads` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `ads` (
+  `id` int(11) NOT NULL,
   `username` varchar(225) NOT NULL,
   `in_search_of` varchar(225) NOT NULL,
   `category` varchar(225) NOT NULL,
@@ -44,9 +44,8 @@ CREATE TABLE IF NOT EXISTS `ads` (
   `more_info` text NOT NULL,
   `date` date NOT NULL,
   `time` time NOT NULL,
-  `removed` varchar(5) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+  `removed` varchar(5) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `ads`
@@ -65,17 +64,16 @@ INSERT INTO `ads` (`id`, `username`, `in_search_of`, `category`, `study_area`, `
 -- Table structure for table `billing_settings`
 --
 
-CREATE TABLE IF NOT EXISTS `billing_settings` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `billing_settings` (
+  `id` int(11) NOT NULL,
   `username` varchar(250) NOT NULL,
   `bank_name` varchar(250) NOT NULL,
   `account_owner` varchar(250) NOT NULL,
   `account_number` varchar(20) NOT NULL,
   `billing_code` varchar(10) NOT NULL,
   `date` date NOT NULL,
-  `time` time NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+  `time` time NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `billing_settings`
@@ -94,15 +92,14 @@ INSERT INTO `billing_settings` (`id`, `username`, `bank_name`, `account_owner`, 
 -- Table structure for table `connection_requests`
 --
 
-CREATE TABLE IF NOT EXISTS `connection_requests` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `connection_requests` (
+  `id` int(11) NOT NULL,
   `user_from` varchar(250) NOT NULL,
   `user_to` varchar(250) NOT NULL,
   `status` varchar(100) NOT NULL,
   `date` date NOT NULL,
-  `time` time NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=107 ;
+  `time` time NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `connection_requests`
@@ -122,14 +119,13 @@ INSERT INTO `connection_requests` (`id`, `user_from`, `user_to`, `status`, `date
 -- Table structure for table `conversations`
 --
 
-CREATE TABLE IF NOT EXISTS `conversations` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `conversations` (
+  `id` int(11) NOT NULL,
   `user_1` varchar(225) NOT NULL,
   `user_2` varchar(225) NOT NULL,
   `date` varchar(10) NOT NULL,
-  `time` varchar(10) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+  `time` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `conversations`
@@ -148,14 +144,13 @@ INSERT INTO `conversations` (`id`, `user_1`, `user_2`, `date`, `time`) VALUES
 -- Table structure for table `deleted_conversations`
 --
 
-CREATE TABLE IF NOT EXISTS `deleted_conversations` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `deleted_conversations` (
+  `id` int(11) NOT NULL,
   `conversation_id` varchar(225) NOT NULL,
   `deleted_by` varchar(225) NOT NULL,
   `date` varchar(10) NOT NULL,
-  `time` varchar(10) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `time` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -163,15 +158,14 @@ CREATE TABLE IF NOT EXISTS `deleted_conversations` (
 -- Table structure for table `deleted_msgs`
 --
 
-CREATE TABLE IF NOT EXISTS `deleted_msgs` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `deleted_msgs` (
+  `id` int(11) NOT NULL,
   `msg_id` int(11) NOT NULL,
   `conv_id` int(11) NOT NULL,
   `deleted_by` varchar(225) NOT NULL,
   `date` varchar(225) NOT NULL,
-  `time` varchar(225) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+  `time` varchar(225) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `deleted_msgs`
@@ -186,8 +180,8 @@ INSERT INTO `deleted_msgs` (`id`, `msg_id`, `conv_id`, `deleted_by`, `date`, `ti
 -- Table structure for table `educational_qualifications`
 --
 
-CREATE TABLE IF NOT EXISTS `educational_qualifications` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `educational_qualifications` (
+  `id` int(11) NOT NULL,
   `username` varchar(225) NOT NULL,
   `institution` varchar(225) NOT NULL,
   `course` varchar(225) NOT NULL,
@@ -195,9 +189,8 @@ CREATE TABLE IF NOT EXISTS `educational_qualifications` (
   `start_date` varchar(225) NOT NULL,
   `end_date` varchar(225) NOT NULL,
   `date` varchar(200) NOT NULL,
-  `time` varchar(200) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+  `time` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `educational_qualifications`
@@ -212,16 +205,15 @@ INSERT INTO `educational_qualifications` (`id`, `username`, `institution`, `cour
 -- Table structure for table `general_notifications`
 --
 
-CREATE TABLE IF NOT EXISTS `general_notifications` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `general_notifications` (
+  `id` int(11) NOT NULL,
   `username` varchar(225) NOT NULL,
   `type` varchar(225) NOT NULL,
   `user_from` varchar(225) NOT NULL,
   `in_post` varchar(225) NOT NULL,
   `date` date NOT NULL,
-  `time` time NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `time` time NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -229,8 +221,8 @@ CREATE TABLE IF NOT EXISTS `general_notifications` (
 -- Table structure for table `groups`
 --
 
-CREATE TABLE IF NOT EXISTS `groups` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `groups` (
+  `id` int(11) NOT NULL,
   `created_by` varchar(225) NOT NULL,
   `group_name` varchar(225) NOT NULL,
   `purpose` varchar(225) NOT NULL,
@@ -239,9 +231,8 @@ CREATE TABLE IF NOT EXISTS `groups` (
   `topic` varchar(225) NOT NULL,
   `group_rules` text NOT NULL,
   `date` date NOT NULL,
-  `time` time NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+  `time` time NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `groups`
@@ -256,14 +247,13 @@ INSERT INTO `groups` (`id`, `created_by`, `group_name`, `purpose`, `group_type`,
 -- Table structure for table `interested_list`
 --
 
-CREATE TABLE IF NOT EXISTS `interested_list` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `interested_list` (
+  `id` int(11) NOT NULL,
   `interested_user` varchar(250) NOT NULL,
   `ad_id` varchar(225) NOT NULL,
   `date` varchar(10) NOT NULL,
-  `time` varchar(10) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=59 ;
+  `time` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `interested_list`
@@ -290,8 +280,8 @@ INSERT INTO `interested_list` (`id`, `interested_user`, `ad_id`, `date`, `time`)
 -- Table structure for table `msg_conversations`
 --
 
-CREATE TABLE IF NOT EXISTS `msg_conversations` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `msg_conversations` (
+  `id` int(11) NOT NULL,
   `conv_id` int(11) NOT NULL,
   `msg` text NOT NULL,
   `type` varchar(225) NOT NULL,
@@ -299,9 +289,8 @@ CREATE TABLE IF NOT EXISTS `msg_conversations` (
   `conv_with` varchar(225) NOT NULL,
   `seen` varchar(5) NOT NULL,
   `date` varchar(225) NOT NULL,
-  `time` varchar(225) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=50 ;
+  `time` varchar(225) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `msg_conversations`
@@ -352,8 +341,8 @@ INSERT INTO `msg_conversations` (`id`, `conv_id`, `msg`, `type`, `username`, `co
 (42, 3, 'am good fam.', 'text', 'desireesite', 'preciousebi', 'yes', '2018-03-24', '20:55:41'),
 (43, 4, 'hi', 'text', 'preciousebi', 'jeremiahtam', 'yes', '2018-04-17', '11:56:22'),
 (44, 4, 'how are you', 'text', 'jeremiahtam', 'preciousebi', 'yes', '2018-04-17', '11:56:35'),
-(45, 5, 'hi', 'text', 'johndoe', 'preciousebi', 'no', '2018-05-27', '16:40:42'),
-(46, 5, 'iuhrlgsmkl', 'text', 'johndoe', 'preciousebi', 'no', '2018-06-12', '13:50:34'),
+(45, 5, 'hi', 'text', 'johndoe', 'preciousebi', 'yes', '2018-05-27', '16:40:42'),
+(46, 5, 'iuhrlgsmkl', 'text', 'johndoe', 'preciousebi', 'yes', '2018-06-12', '13:50:34'),
 (47, 2, 'hello', 'text', 'johndoe', 'jeremiahtam', 'no', '2018-07-18', '17:08:20'),
 (48, 2, 'hi', 'text', 'johndoe', 'jeremiahtam', 'no', '2018-09-19', '12:11:44'),
 (49, 2, 'hello', 'text', 'johndoe', 'jeremiahtam', 'no', '2018-10-06', '22:03:08');
@@ -364,17 +353,16 @@ INSERT INTO `msg_conversations` (`id`, `conv_id`, `msg`, `type`, `username`, `co
 -- Table structure for table `notification_settings`
 --
 
-CREATE TABLE IF NOT EXISTS `notification_settings` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `notification_settings` (
+  `id` int(11) NOT NULL,
   `username` varchar(250) NOT NULL,
   `requests` varchar(3) NOT NULL,
   `comments` varchar(3) NOT NULL,
   `replies` varchar(3) NOT NULL,
   `messages` varchar(3) NOT NULL,
   `date` date NOT NULL,
-  `time` time NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+  `time` time NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `notification_settings`
@@ -393,17 +381,16 @@ INSERT INTO `notification_settings` (`id`, `username`, `requests`, `comments`, `
 -- Table structure for table `privacy_settings`
 --
 
-CREATE TABLE IF NOT EXISTS `privacy_settings` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `privacy_settings` (
+  `id` int(11) NOT NULL,
   `username` varchar(250) NOT NULL,
   `phone` varchar(8) NOT NULL,
   `email` varchar(8) NOT NULL,
   `age` varchar(8) NOT NULL,
   `location` varchar(8) NOT NULL,
   `date` date NOT NULL,
-  `time` time NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+  `time` time NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `privacy_settings`
@@ -422,17 +409,16 @@ INSERT INTO `privacy_settings` (`id`, `username`, `phone`, `email`, `age`, `loca
 -- Table structure for table `request_notifications`
 --
 
-CREATE TABLE IF NOT EXISTS `request_notifications` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `request_notifications` (
+  `id` int(11) NOT NULL,
   `username` varchar(225) NOT NULL,
   `type` varchar(225) NOT NULL,
   `user_from` varchar(225) NOT NULL,
   `request_id` int(11) NOT NULL,
   `responded` varchar(225) NOT NULL,
   `date` date NOT NULL,
-  `time` time NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=107 ;
+  `time` time NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `request_notifications`
@@ -461,8 +447,8 @@ INSERT INTO `request_notifications` (`id`, `username`, `type`, `user_from`, `req
 -- Table structure for table `users`
 --
 
-CREATE TABLE IF NOT EXISTS `users` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
   `fullname` varchar(100) NOT NULL,
   `username` varchar(100) NOT NULL,
   `email` varchar(50) NOT NULL,
@@ -477,10 +463,8 @@ CREATE TABLE IF NOT EXISTS `users` (
   `date` date NOT NULL,
   `time` time NOT NULL,
   `passwordreset` varchar(100) NOT NULL,
-  `removed` varchar(5) NOT NULL,
-  PRIMARY KEY (`id`),
-  FULLTEXT KEY `fullname` (`fullname`,`username`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+  `removed` varchar(5) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
@@ -498,8 +482,8 @@ INSERT INTO `users` (`id`, `fullname`, `username`, `email`, `phone`, `password`,
 -- Table structure for table `work_experience`
 --
 
-CREATE TABLE IF NOT EXISTS `work_experience` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `work_experience` (
+  `id` int(11) NOT NULL,
   `username` varchar(225) NOT NULL,
   `organization_name` varchar(225) NOT NULL,
   `position_held` varchar(225) NOT NULL,
@@ -507,9 +491,8 @@ CREATE TABLE IF NOT EXISTS `work_experience` (
   `end_date` varchar(10) NOT NULL,
   `currently_there` varchar(5) NOT NULL,
   `date` varchar(225) NOT NULL,
-  `time` varchar(225) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+  `time` varchar(225) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `work_experience`
@@ -519,6 +502,208 @@ INSERT INTO `work_experience` (`id`, `username`, `organization_name`, `position_
 (1, 'jeremiahtam', 'NPDC', 'Manager', '2017-09-22', '', 'yes', '2017-11-22', '11:42:13'),
 (2, 'jeremiahtam', 'NNPC', 'Manager', '2017-09-22', '', 'yes', '2017-11-22', '11:26:37'),
 (3, '', '', '', '', '', '', '2018-10-23', '03:15:03');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `ads`
+--
+ALTER TABLE `ads`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `billing_settings`
+--
+ALTER TABLE `billing_settings`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `connection_requests`
+--
+ALTER TABLE `connection_requests`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `conversations`
+--
+ALTER TABLE `conversations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `deleted_conversations`
+--
+ALTER TABLE `deleted_conversations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `deleted_msgs`
+--
+ALTER TABLE `deleted_msgs`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `educational_qualifications`
+--
+ALTER TABLE `educational_qualifications`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `general_notifications`
+--
+ALTER TABLE `general_notifications`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `groups`
+--
+ALTER TABLE `groups`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `interested_list`
+--
+ALTER TABLE `interested_list`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `msg_conversations`
+--
+ALTER TABLE `msg_conversations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `notification_settings`
+--
+ALTER TABLE `notification_settings`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `privacy_settings`
+--
+ALTER TABLE `privacy_settings`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `request_notifications`
+--
+ALTER TABLE `request_notifications`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+ALTER TABLE `users` ADD FULLTEXT KEY `fullname` (`fullname`,`username`);
+
+--
+-- Indexes for table `work_experience`
+--
+ALTER TABLE `work_experience`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `ads`
+--
+ALTER TABLE `ads`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `billing_settings`
+--
+ALTER TABLE `billing_settings`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `connection_requests`
+--
+ALTER TABLE `connection_requests`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
+
+--
+-- AUTO_INCREMENT for table `conversations`
+--
+ALTER TABLE `conversations`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `deleted_conversations`
+--
+ALTER TABLE `deleted_conversations`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `deleted_msgs`
+--
+ALTER TABLE `deleted_msgs`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `educational_qualifications`
+--
+ALTER TABLE `educational_qualifications`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `general_notifications`
+--
+ALTER TABLE `general_notifications`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `groups`
+--
+ALTER TABLE `groups`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `interested_list`
+--
+ALTER TABLE `interested_list`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+
+--
+-- AUTO_INCREMENT for table `msg_conversations`
+--
+ALTER TABLE `msg_conversations`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+
+--
+-- AUTO_INCREMENT for table `notification_settings`
+--
+ALTER TABLE `notification_settings`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `privacy_settings`
+--
+ALTER TABLE `privacy_settings`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `request_notifications`
+--
+ALTER TABLE `request_notifications`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `work_experience`
+--
+ALTER TABLE `work_experience`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
