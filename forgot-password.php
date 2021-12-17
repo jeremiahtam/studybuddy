@@ -1,10 +1,12 @@
+<?php include("./inc/session.inc.php");?>
+
 <!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="x-ua-compatible" content="IE=9">
-<base href="http://localhost/studybuddy/" />
+<base href="<?php echo base_url();?>" />
 
 <title>Forgot Password | StuddyBuddy</title>
 <link href="css/bootstrap.css" rel="stylesheet">
@@ -41,7 +43,7 @@
              <button type="submit" class="btn btn-success btn-lg" name="send" id="send">Retrieve Password
               <img src='img/ajax-loader.gif' class="preloader" width='22px' height='22px' hidden="true"/></button>
              <div class="form-group">
-               <a href="http://localhost/studybuddy/login" class="card-link">Login</a>               
+               <a href="login" class="card-link">Login</a>               
              </div>
            </form>
 

@@ -70,11 +70,11 @@ if($ad_num_rows==1){
 	  
 		  <div class='ad-details'>                  
 			<div class='ad-user-details'>
-			  <div class='ad-name'><a href='http://localhost/studybuddy/profile/$ad_username'>$fullname</a></div>
+			  <div class='ad-name'><a href='profile/$ad_username'>$fullname</a></div>
 			  <div class='ad-location'>$location</div>
 			</div><!--ad-user-details-->
 		  
-			<div class='ad-breadcrumb'><a class='category' href='http://localhost/studybuddy/view-ads-by-category/$category'>$category_edited</a> <span>></span> <a class='study-area' href='http://localhost/studybuddy/view-ads-by-category/$category/$study_area'>$study_area</a> <span>></span> <a class='concentration' href='http://localhost/studybuddy/view-ads-by-category/$category/$study_area/$concentration'>$concentration_edited</a></div>
+			<div class='ad-breadcrumb'><a class='category' href='view-ads-by-category/$category'>$category_edited</a> <span>></span> <a class='study-area' href='view-ads-by-category/$category/$study_area'>$study_area</a> <span>></span> <a class='concentration' href='view-ads-by-category/$category/$study_area/$concentration'>$concentration_edited</a></div>
 	  
 			<div class='ad-item-heading'>Topic</div>
 			<div class='topic'>$topic</div>

@@ -1,13 +1,6 @@
 <?php
-session_start(); 
-
-if(!isset($_SESSION["login_user"])){
-	   }
-	else
-	   {
-	$user = $_SESSION["login_user"];
-	   }
-  include("./inc/db.inc.php");
+include("./inc/session.inc.php");
+include("./inc/db.inc.php");
   
   if (isset($_GET['u'])){
   $username = mysqli_real_escape_string($conn,$_GET['u']);
@@ -24,7 +17,7 @@ if(!isset($_SESSION["login_user"])){
 			$profile_type=$_GET['profile_type'];
 			if($profile_type =="ads" || $profile_type =="connections" || $profile_type =="about"){
 			  }else{
-				 header("Location: http://localhost/studybuddy/home");
+				 header("Location: home");
 				exit();
 				  }
 		}else{
@@ -39,14 +32,14 @@ if(!isset($_SESSION["login_user"])){
       }#end num-rows check
     else
       {
-	header("Location: http://localhost/studybuddy/home");
+	header("Location: home");
     exit();
         }
       }else{
-	header("Location: http://localhost/studybuddy/home");
+	header("Location: home");
         }
       }else{
-	header("Location: http://localhost/studybuddy/home");
+	header("Location: home");
     }
 
  ?>
@@ -57,7 +50,8 @@ if(!isset($_SESSION["login_user"])){
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="x-ua-compatible" content="IE=9">
-<base href="http://localhost/studybuddy/" />
+<base href="<?php echo base_url();?>" />
+
 
 <title>Profile | StuddyBuddy</title>
 <link href="css/bootstrap.css" rel="stylesheet">
@@ -136,7 +130,7 @@ if(!isset($_SESSION["login_user"])){
                   #only show if the profile belongs to the user 
                   if($user!==$username){
                      echo"
-                        <a class='send-message-button btn btn-outline-primary' href='http://localhost/studybuddy/messages/$username'>Message</a>
+                        <a class='send-message-button btn btn-outline-primary' href='messages/$username'>Message</a>
                       ";			  
                     }
                 }

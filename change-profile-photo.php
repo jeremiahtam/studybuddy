@@ -1,15 +1,8 @@
 <?php
-session_start(); 
+  include("./inc/session.inc.php");
 
 if(!isset($_SESSION["login_user"])){
-
-	   }
-	else
-	   {
-	$user = $_SESSION["login_user"];
-	   }
-if(!isset($_SESSION["login_user"])){
-	header("Location: http://localhost/studybuddy/home");
+	header("Location: home");
 	   }
   include("./inc/db.inc.php");
  ?>
@@ -20,7 +13,7 @@ if(!isset($_SESSION["login_user"])){
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="x-ua-compatible" content="IE=9">
-<base href="http://localhost/studybuddy/" />
+<base href="<?php echo base_url();?>" />
 
 <title>Change Profile Photo | StuddyBuddy</title>
 <link href="css/bootstrap.css" rel="stylesheet">
@@ -40,8 +33,8 @@ if(!isset($_SESSION["login_user"])){
     <section class="upload-bg">
       <div class="container">
           <ul class="nav nav-tabs">
-            <li role="presentation" class="active"><a href="http://localhost/studybuddy/change-profile-photo">Profile Photo</a></li>
-            <li role="presentation" class=""><a href="http://localhost/studybuddy/change-cover-photo">Cover Photo</a></li>
+            <li role="presentation" class="active"><a href="change-profile-photo">Profile Photo</a></li>
+            <li role="presentation" class=""><a href="change-cover-photo">Cover Photo</a></li>
           </ul>
         <div class="row">
           <div class="col-sm-8">

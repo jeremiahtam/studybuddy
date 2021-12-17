@@ -21,8 +21,8 @@ $title=basename($_SERVER['SCRIPT_FILENAME'],'.php');
             if(!isset($user)){
 			echo"
 			  <a class='navbar-brand visible-xs' href='home'>Study Buddy</a>
-              <a class='btn pull-right login' href='http://localhost/studybuddy/login'>Login</a>
-              <a class='btn pull-right signup' href='http://localhost/studybuddy/signup'>SignUp</a>
+              <a class='btn pull-right login' href='login'>Login</a>
+              <a class='btn pull-right signup' href='signup'>SignUp</a>
            ";
 
 			}else{				
@@ -55,7 +55,7 @@ $title=basename($_SERVER['SCRIPT_FILENAME'],'.php');
 			  <span class='topmost-nav-text'>Profile</span>
 			</a>
 
-			<a href='http://localhost/studybuddy/create-ad' class='pull-right topmost-nav-items ";
+			<a href='create-ad' class='pull-right topmost-nav-items ";
 			  if($title=='create-ad'){echo "active";}
 			  echo" ' title='Create Ad' rel='tooltip' data-placement='bottom'>
 			  <span class=' ";
@@ -77,7 +77,7 @@ $title=basename($_SERVER['SCRIPT_FILENAME'],'.php');
 
 			<div class='separator'></div>
 
-			<a href='http://localhost/studybuddy/messages' class='pull-right topmost-nav-items ";
+			<a href='messages' class='pull-right topmost-nav-items ";
 			 if($title=='messages'){echo "active";}
 			  echo" ' title='Messages' rel='tooltip' data-placement='bottom'>
 			  <span class=' ";
@@ -86,7 +86,7 @@ $title=basename($_SERVER['SCRIPT_FILENAME'],'.php');
 			  <span class='topmost-nav-text'>Messages</span>
 			</a>
 
-			<a href='http://localhost/studybuddy/home' class='pull-right topmost-nav-items visible-xs ";
+			<a href='home' class='pull-right topmost-nav-items visible-xs ";
 			 if($title=='index'){echo "active";}
 			 echo" ' title='Home' rel='tooltip' data-placement='bottom'>
 			  <span class=' ";
@@ -129,11 +129,11 @@ $title=basename($_SERVER['SCRIPT_FILENAME'],'.php');
             while($i < count($certificate_array)){
                echo"
 			   <li class='dropdown-submenu'>
-			   <a href='http://localhost/studybuddy/view-ads-by-category/$category_array[0]/".$certificate_array[$i][0]."'>".str_replace('_',' ',$certificate_array[$i][0])."</a>
+			   <a href='view-ads-by-category/$category_array[0]/".$certificate_array[$i][0]."'>".str_replace('_',' ',$certificate_array[$i][0])."</a>
                 <ul class='dropdown-menu'>";
 				$j = 1;
 				while($j < count($certificate_array[$i])){
-					echo"<li><a href='http://localhost/studybuddy/view-ads-by-category/$category_array[0]/".$certificate_array[$i][0]."/".$certificate_array[$i][$j]."'>".str_replace('_',' ',$certificate_array[$i][$j])."</a></li>";
+					echo"<li><a href='view-ads-by-category/$category_array[0]/".$certificate_array[$i][0]."/".$certificate_array[$i][$j]."'>".str_replace('_',' ',$certificate_array[$i][$j])."</a></li>";
 					$j++;
 					}
 				echo"
@@ -153,11 +153,11 @@ $title=basename($_SERVER['SCRIPT_FILENAME'],'.php');
             while($i < count($degree_array)){
                echo"
 			   <li class='dropdown-submenu'>
-			   <a href='http://localhost/studybuddy/view-ads-by-category/$category_array[1]/".$degree_array[$i][0]."'>".str_replace('_',' ',$degree_array[$i][0])."</a>
+			   <a href='view-ads-by-category/$category_array[1]/".$degree_array[$i][0]."'>".str_replace('_',' ',$degree_array[$i][0])."</a>
                 <ul class='dropdown-menu'>";
 				$j = 1;
 				while($j < count($degree_array[$i])){
-					echo"<li><a href='http://localhost/studybuddy/view-ads-by-category/$category_array[1]/".$degree_array[$i][0]."/".$degree_array[$i][$j]."'>".str_replace('_',' ',$degree_array[$i][$j])."</a></li>";
+					echo"<li><a href='view-ads-by-category/$category_array[1]/".$degree_array[$i][0]."/".$degree_array[$i][$j]."'>".str_replace('_',' ',$degree_array[$i][$j])."</a></li>";
 					$j++;
 					}
 				echo"
@@ -177,11 +177,11 @@ $title=basename($_SERVER['SCRIPT_FILENAME'],'.php');
             while($i < count($vocational_array)){
                echo"
 			   <li class='dropdown-submenu'>
-			   <a href='http://localhost/studybuddy/view-ads-by-category/$category_array[2]/".$vocational_array[$i][0]."'>".str_replace('_',' ',$vocational_array[$i][0])."</a>
+			   <a href='view-ads-by-category/$category_array[2]/".$vocational_array[$i][0]."'>".str_replace('_',' ',$vocational_array[$i][0])."</a>
                 <ul class='dropdown-menu'>";
 				$j = 1;
 				while($j < count($vocational_array[$i])){
-					echo"<li><a href='http://localhost/studybuddy/view-ads-by-category/$category_array[2]/".$vocational_array[$i][0]."/".$vocational_array[$i][$j]."'>".str_replace('_',' ',$vocational_array[$i][$j])."</a></li>";
+					echo"<li><a href='view-ads-by-category/$category_array[2]/".$vocational_array[$i][0]."/".$vocational_array[$i][$j]."'>".str_replace('_',' ',$vocational_array[$i][$j])."</a></li>";
 					$j++;
 					}
 				echo"
@@ -201,11 +201,11 @@ $title=basename($_SERVER['SCRIPT_FILENAME'],'.php');
             while($i < count($GAT_array)){
                echo"
 			   <li class='dropdown-submenu'>
-			   <a href='http://localhost/studybuddy/view-ads-by-category/$category_array[3]/".$GAT_array[$i][0]."'>".str_replace('_',' ',$GAT_array[$i][0])."</a>
+			   <a href='view-ads-by-category/$category_array[3]/".$GAT_array[$i][0]."'>".str_replace('_',' ',$GAT_array[$i][0])."</a>
                 <ul class='dropdown-menu'>";
 				$j = 1;
 				while($j < count($GAT_array[$i])){
-					echo"<li><a href='http://localhost/studybuddy/view-ads-by-category/$category_array[3]/".$GAT_array[$i][0]."/".$GAT_array[$i][$j]."'>".str_replace('_',' ',$GAT_array[$i][$j])."</a></li>";
+					echo"<li><a href='view-ads-by-category/$category_array[3]/".$GAT_array[$i][0]."/".$GAT_array[$i][$j]."'>".str_replace('_',' ',$GAT_array[$i][$j])."</a></li>";
 					$j++;
 					}
 				echo"

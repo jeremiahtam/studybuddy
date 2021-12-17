@@ -1,11 +1,8 @@
 <?php
-session_start(); 
+include("./inc/session.inc.php");
+
 include("./inc/db.inc.php");
 
-if(!isset($_SESSION["login_user"])){
-	 }else{
-  $user = $_SESSION["login_user"];
-	 }
 //unset the pg of a full message
 if(isset($_SESSION["pg"])){
 	unset($_SESSION["pg"]);
@@ -21,13 +18,13 @@ if(isset($_SESSION["conv_pg"])){
 
 
 if(!isset($_SESSION["login_user"])){
-	header("Location: http://localhost/studybuddy/home");
+	header("Location: home");
 	   }
  if (isset($_GET['msg_username'])){
 	  $msg_username = mysqli_real_escape_string($conn,$_GET['msg_username']);
 	  //if the user tries to send a message to himself, redirect the user
 	  if($msg_username==$user){
-		  header("Location: http://localhost/studybuddy/home");
+		  header("Location: home");
 		}else{
 		  $query = mysqli_query($conn,"SELECT * FROM users WHERE username='$msg_username' AND removed='no' ");
 		  $num_rows = mysqli_num_rows($query);
@@ -41,7 +38,7 @@ if(!isset($_SESSION["login_user"])){
 			  $profile_pic = 'img/profile_pic/'.$profile_pic;
 			}
 		  }else{
-			header("Location: http://localhost/studybuddy/home");
+			header("Location: home");
 			  }
 		
 		  $conv_query = mysqli_query($conn,"SELECT * FROM conversations WHERE
@@ -50,7 +47,7 @@ if(!isset($_SESSION["login_user"])){
 		  $conv_id = $conv_details['id'];			  
 		}
 	}else{
-	//header("Location: http://localhost/studybuddy/home");
+	//header("Location: home");
   }
 
 
@@ -62,7 +59,8 @@ if(!isset($_SESSION["login_user"])){
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="x-ua-compatible" content="IE=9">
-<base href="http://localhost/studybuddy/" />
+<base href="<?php echo base_url();?>" />
+
 
 <title>Messages | StuddyBuddy</title>
 <link href="css/bootstrap.css" rel="stylesheet">
@@ -119,7 +117,7 @@ if(!isset($_SESSION["login_user"])){
               </form>
 
               <div class='media <?php if(!isset($msg_username)){ echo 'hidden';}?>'>
-                <div class="msg-back-btn"><a <?php if(isset($msg_username)){ echo "href='http://localhost/studybuddy/messages'";}?>><span class="ion-android-arrow-back"></span></a></div>
+                <div class="msg-back-btn"><a <?php if(isset($msg_username)){ echo "href='messages'";}?>><span class="ion-android-arrow-back"></span></a></div>
                 
                 <div class='media-left'>
                   <div class='current-image-box'>

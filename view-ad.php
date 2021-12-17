@@ -1,11 +1,7 @@
 <?php
-session_start(); 
+include("./inc/session.inc.php");
 if(!isset($_SESSION["login_user"])){
-  }else{
-	$user = $_SESSION["login_user"];
-  }
-if(!isset($_SESSION["login_user"])){
-	header("Location: http://localhost/studybuddy/home");
+	header("Location: home");
   }
 
   //get the ad_id
@@ -14,10 +10,10 @@ if(!isset($_SESSION["login_user"])){
 	if(!empty($ad_id)){
 
 	}else{
-//	  header("Location: http://localhost/studybuddy/home");
+//	  header("Location: home");
 	}
   }else{
-//	header("Location: http://localhost/studybuddy/home");
+//	header("Location: home");
   }
 
 
@@ -30,7 +26,8 @@ if(!isset($_SESSION["login_user"])){
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="x-ua-compatible" content="IE=9">
-<base href="http://localhost/studybuddy/" />
+<base href="<?php echo base_url();?>" />
+
 
 <title>View Ad | StuddyBuddy</title>
 <link href="css/bootstrap.css" rel="stylesheet">
@@ -115,7 +112,7 @@ $(document).ready(function() {
 				
 		 if(!info){
 			 //alert('empty');
-			 $('.panel-body').html("<h4 class='panel-heading'><span class='ion-android-checkmark-circle'></span> Your registration was successful</h4><p class='panel-text'>To gain access to our service, login.</p><a href='http://localhost/studybuddy/login' class='btn btn-outline-danger'>Login Now!</a>");
+			 $('.panel-body').html("<h4 class='panel-heading'><span class='ion-android-checkmark-circle'></span> Your registration was successful</h4><p class='panel-text'>To gain access to our service, login.</p><a href='login' class='btn btn-outline-danger'>Login Now!</a>");
 			 $('.panel-body').addClass('text-center')
   
 			 }else{

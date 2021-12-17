@@ -1,14 +1,8 @@
 <?php
-   session_start(); 
-  if(!isset($_SESSION["login_user"])){
-    }
-    else
-    {
-    $user = $_SESSION["login_user"];
-    }
-  include("./inc/db.inc.php");
+include("./inc/session.inc.php");
+include("./inc/db.inc.php");
   if(!isset($user)){
-    header("Location: http://localhost/studybuddy/home");
+    header("Location: home");
   }
 
   if (isset($_GET['settings_page'])){
@@ -23,7 +17,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="x-ua-compatible" content="IE=9">
-<base href="http://localhost/studybuddy/" />
+<base href="<?php echo base_url();?>" />
+
 
 <title>Settings | StuddyBuddy</title>
 <link href="css/bootstrap.css" rel="stylesheet">

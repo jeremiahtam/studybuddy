@@ -1,13 +1,7 @@
 <?php
-  session_start(); 
-if(!isset($_SESSION["login_user"])){
-	}
-	else
-	{
-	$user = $_SESSION["login_user"];
-	}
+  include("./inc/session.inc.php");
   include("./inc/db.inc.php");
- ?>
+?>
 
 <!doctype html>
 <html lang="en">
@@ -15,7 +9,8 @@ if(!isset($_SESSION["login_user"])){
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="x-ua-compatible" content="IE=9">
-<base href="http://localhost/studybuddy/" />
+<base href="<?php echo base_url();?>" />
+
 
 <title>Login | StuddyBuddy</title>
 <link href="css/bootstrap.css" rel="stylesheet">
@@ -43,6 +38,7 @@ if(!isset($_SESSION["login_user"])){
           <div class="panel-body">
  
             <div class="login-info"></div>
+            <small>Test Detail - email: john@yahoo.com, password: password</small>
             
             <form method="post" id="login-form" name="login-form">
               <div class="form-group">
@@ -56,8 +52,8 @@ if(!isset($_SESSION["login_user"])){
               <button class="btn btn-success btn-block btn-lg" type="submit" id="login" name="login">Login
               <img src='img/ajax-loader.gif' class="preloader" width='22px' height='22px' hidden="true"/></button>
               <div class="form-group">
-                <a href="http://localhost/studybuddy/forgot-password" class="card-link">Forgot Password?</a>
-                <p>Dont have an account? <a href="http://localhost/studybuddy/signup" class="card-link">SignUp</a></p>
+                <a href="forgot-password" class="card-link">Forgot Password?</a>
+                <p>Dont have an account? <a href="signup" class="card-link">SignUp</a></p>
               </div>
             </form>
           </div>

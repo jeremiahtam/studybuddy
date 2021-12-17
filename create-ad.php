@@ -1,16 +1,9 @@
 <?php
-session_start(); 
-
-if(!isset($_SESSION["login_user"])){
-	   }
-	else
-	   {
-	$user = $_SESSION["login_user"];
-	   }
+  include("./inc/session.inc.php");
   include("./inc/db.inc.php");
   
   if (!isset($_SESSION["login_user"])){
-	  header("Location: http://localhost/studybuddy/login");
+	  header("Location: login");
     }
 
  ?>
@@ -21,7 +14,7 @@ if(!isset($_SESSION["login_user"])){
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="x-ua-compatible" content="IE=9">
-<base href="http://localhost/studybuddy/"/>
+<base href="<?php echo base_url();?>" />
 
 <title>Create Ad | StuddyBuddy</title>
 <link href="css/bootstrap.css" rel="stylesheet">

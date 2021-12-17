@@ -1,11 +1,5 @@
 <?php
-session_start(); 
-if(!isset($_SESSION["login_user"])){
-	   }
-	else
-	   {
-	$user = $_SESSION["login_user"];
-	   }
+include("./inc/session.inc.php");
 include("./inc/db.inc.php");
 
 //get the category
@@ -43,7 +37,7 @@ if(isset($_GET['category'])){
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="x-ua-compatible" content="IE=9">
-<base href="http://localhost/studybuddy/" />
+<base href="<?php echo base_url();?>" />
 
 <title>View By Category | StuddyBuddy</title>
 <link href="css/bootstrap.css" rel="stylesheet">

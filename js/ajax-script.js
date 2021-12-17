@@ -59,7 +59,7 @@ $(document).ready(function() {
 			 		
 			 if(!info){
 				 //alert('empty');
-				 $('.panel-body').html("<h4 class='panel-heading'><span class='ion-android-checkmark-circle'></span> Your registration was successful</h4><p class='panel-text'>To gain access to our service, login.</p><a href='http://localhost/studybuddy/login' class='btn btn-outline-danger'>Login Now!</a>");
+				 $('.panel-body').html("<h4 class='panel-heading'><span class='ion-android-checkmark-circle'></span> Your registration was successful</h4><p class='panel-text'>To gain access to our service, login.</p><a href='login' class='btn btn-outline-danger'>Login Now!</a>");
 				 $('.panel-body').addClass('text-center')
 
 				 }else{

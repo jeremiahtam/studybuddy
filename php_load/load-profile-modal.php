@@ -516,7 +516,7 @@ switch($modal_content){
 	   echo"
 	   <div class='row'>
 		 <div class='interest-row col-xs-12'>
-		   <a href='http://localhost/studybuddy/profile/$interested_user/about'>
+		   <a href='profile/$interested_user/about'>
 			 <div class='interest-image-box'><img class='' src=' ";
 			 if($interested_profile_pic==''){
 				   echo"img/profile_pic/user.png";

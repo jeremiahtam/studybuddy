@@ -7,11 +7,11 @@ include("./php_load/category-array.php");
 
           <div class="col-sm-4 col-md-2">
             <ul>
-              <h5><a href="http://localhost/studybuddy/view-ads-by-category/Certificate_Program">Certificate Program</a></h5>
+              <h5><a href="view-ads-by-category/Certificate_Program">Certificate Program</a></h5>
               <?php
 			  $i = 0;
 			  while($i < count($certificate_array)){
-				 echo"<li><a href='http://localhost/studybuddy/view-ads-by-category/Certificate_Program/".$certificate_array[$i][0]."'>".str_replace('_',' ',$certificate_array[$i][0])."</a></li>"; 
+				 echo"<li><a href='view-ads-by-category/Certificate_Program/".$certificate_array[$i][0]."'>".str_replace('_',' ',$certificate_array[$i][0])."</a></li>"; 
 				 $i++;
 				}
 			  ?>
@@ -20,11 +20,11 @@ include("./php_load/category-array.php");
 
           <div class="col-sm-4 col-md-2">
             <ul>
-              <h5><a href="http://localhost/studybuddy/view-ads-by-category/Degree_Program">Degree Program</a></h5>
+              <h5><a href="view-ads-by-category/Degree_Program">Degree Program</a></h5>
               <?php
 			  $i = 0;
 			  while($i < count($degree_array)){
-				 echo"<li><a href='http://localhost/studybuddy/view-ads-by-category/Degree_Program/".$degree_array[$i][0]."'>".str_replace('_',' ',$degree_array[$i][0])."</a></li>"; 
+				 echo"<li><a href='view-ads-by-category/Degree_Program/".$degree_array[$i][0]."'>".str_replace('_',' ',$degree_array[$i][0])."</a></li>"; 
 				 $i++;
 				}
 			  ?>
@@ -32,11 +32,11 @@ include("./php_load/category-array.php");
           </div><!--end col-3-->
           <div class="col-sm-4 col-md-2">
             <ul>
-              <h5><a href="http://localhost/studybuddy/view-ads-by-category/Vocational_Program">Vocational Program</a></h5>
+              <h5><a href="view-ads-by-category/Vocational_Program">Vocational Program</a></h5>
               <?php
 			  $i = 0;
 			  while($i < count($vocational_array)){
-				 echo"<li><a href='http://localhost/studybuddy/view-ads-by-category/Vocational_Program/".$vocational_array[$i][0]."'>".str_replace('_',' ',$vocational_array[$i][0])."</a></li>"; 
+				 echo"<li><a href='view-ads-by-category/Vocational_Program/".$vocational_array[$i][0]."'>".str_replace('_',' ',$vocational_array[$i][0])."</a></li>"; 
 				 $i++;
 				}
 			  ?>
@@ -44,11 +44,11 @@ include("./php_load/category-array.php");
           </div><!--end col-3-->
           <div class="col-sm-4 col-md-2">
             <ul>
-              <h5><a href="http://localhost/studybuddy/view-ads-by-category/Graduate_Admission_Tests">Graduate Admission Tests</a></h5>
+              <h5><a href="view-ads-by-category/Graduate_Admission_Tests">Graduate Admission Tests</a></h5>
               <?php
 			  $i = 0;
 			  while($i < count($GAT_array)){
-				 echo"<li><a href='http://localhost/studybuddy/view-ads-by-category/Graduate_Admission_Tests/".$GAT_array[$i][0]."'>".str_replace('_',' ',$GAT_array[$i][0])."</a></li>"; 
+				 echo"<li><a href='view-ads-by-category/Graduate_Admission_Tests/".$GAT_array[$i][0]."'>".str_replace('_',' ',$GAT_array[$i][0])."</a></li>"; 
 				 $i++;
 				}
 			  ?>

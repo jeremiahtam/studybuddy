@@ -62,7 +62,7 @@
 			<a rel='tooltip' alt='Edit Cover Photo' title='Edit Cover Photo' class='btn dropdown-toggle' id='edit-cover-photo' data-toggle='dropdown' data-placement='bottom' aria-haspopup='true'><span class='ion-android-more-vertical'></span></a>
 			<ul class='dropdown-menu' aria-labelledby='dropdownMenuButton'>
 			  <li><a class='remove-cover-photo'>Delete Cover Photo</a></li>
-			  <li><a class='visible-sm visible-xs' href='http://localhost/studybuddy/change-profile-photo'>Change Cover Photo</a></li>
+			  <li><a class='visible-sm visible-xs' href='change-profile-photo'>Change Cover Photo</a></li>
 			  <li><a class='modal-action hidden-sm hidden-xs' id='upload-cover-photo' data-toggle='modal' data-target='#modal'>Change Cover Photo</a></li>
 			  <li><a class=''>Cancel</a></li>
 			</ul>
@@ -94,7 +94,7 @@
 		  case true:
 		  if($user==$username){
 			echo"
-			<a class='edit-profile-photo visible-sm visible-xs' href='http://localhost/studybuddy/change-profile-photo'><img src='img/camera.png'></a>
+			<a class='edit-profile-photo visible-sm visible-xs' href='change-profile-photo'><img src='img/camera.png'></a>
 			<a class='edit-profile-photo hidden-sm hidden-xs' id='edit-profile-photo'><img src='img/camera.png'></a>
 			<ul class='edit-profile-photo-menu hidden'>
 			  <li><a class='remove-profile-pic'>Delete Photo</a></li>

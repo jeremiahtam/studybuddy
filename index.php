@@ -1,21 +1,16 @@
 <?php
-  session_start();   
-if(!isset($_SESSION["login_user"])){
-	}
-	else
-	{
-	$user = $_SESSION["login_user"];
-	}
+  include("./inc/session.inc.php");
+
   include("./inc/db.inc.php");
  ?>
 
 <!doctype html>
 <html lang="en">
 <head>
-<base href="/studybuddy/"/>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="x-ua-compatible" content="IE=9" >
+<base href="<?php echo base_url();?>" />
 
 <title>Home | StuddyBuddy</title>
 <link href="css/bootstrap.css" rel="stylesheet">
@@ -143,7 +138,7 @@ if(!isset($_SESSION["login_user"])){
             <p>Be a part of our growing community of knowledge seekers and givers. Register with us by following simple steps and start connecting and learning.</p>
           </div>
           <div class="col-md-3 right-btn">
-            <a class="btn btn-lg btn-success" href="http://localhost/studybuddy/signup">SIGN UP</a>
+            <a class="btn btn-lg btn-success" href="signup">SIGN UP</a>
           </div>
         </div><!--end row-->
       </div><!--end container-->    

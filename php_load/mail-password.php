@@ -27,7 +27,7 @@ if(isset($send)){
 	 This is an automated mail. Do not reply this mail!
 	 
 	 Click on the link below or paste it onto a browser.
-	 localhost/studybuddy/reset-password.php?ret_code=$ret_code&username=$db_username
+	 reset-password.php?ret_code=$ret_code&username=$db_username
 	 ";
 	 
 	 mysqli_query($conn,"UPDATE users SET passwordreset='$ret_code' WHERE email='$email'");

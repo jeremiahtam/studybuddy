@@ -68,9 +68,9 @@ if($ad_num_rows==1){
 			echo"
 			  <div class='ad-post'>
 				<div class='time'>$when</div>
-				<div class='name'><a href='http://localhost/studybuddy/profile/$similar_ad_username'>$fullname</a></div>
+				<div class='name'><a href='profile/$similar_ad_username'>$fullname</a></div>
 				<div class='location'>$location</div>
-				<div class='navigation'><a href='http://localhost/studybuddy/view-ads-by-category/$similar_category'>$similar_category_edited</a> <span>></span> <a href='http://localhost/studybuddy/view-ads-by-category/$similar_category/$similar_study_area'>$similar_study_area_edited</a> <span>></span> <a href='http://localhost/studybuddy/view-ads-by-category/$similar_category/$similar_study_area/$similar_concentration'>$similar_concentration_edited</a></div>
+				<div class='navigation'><a href='view-ads-by-category/$similar_category'>$similar_category_edited</a> <span>></span> <a href='view-ads-by-category/$similar_category/$similar_study_area'>$similar_study_area_edited</a> <span>></span> <a href='view-ads-by-category/$similar_category/$similar_study_area/$similar_concentration'>$similar_concentration_edited</a></div>
 				<div class='topic-heading'>Topic</div>
 				<div class='topic'>$similar_topic</div>
 			  </div><!--ad-post-->			
